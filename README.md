@@ -1,0 +1,1 @@
+# ikkyu-academy-life-insurance
