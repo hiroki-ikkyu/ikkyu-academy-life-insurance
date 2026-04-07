@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ピアコンパリソン — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.level-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:700;color:#fff;margin-bottom:10px}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px;line-height:1.3}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)}
+.card p{font-size:12.5px;color:var(--sub);line-height:1.75}
+.card ul,.card ol{padding-left:18px;margin:8px 0}
+.card li{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:4px}
+.card li strong{color:var(--text)}
+.formula{background:#f0f0f2;border-radius:10px;padding:14px;margin:12px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;line-height:1.6}
+.highlight{border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.highlight p{color:var(--text)!important;font-weight:500;font-size:12.5px;line-height:1.75}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700}
+.stat-label{font-size:10px;color:var(--sub);margin-top:2px}
+.table-wrap{overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:300px}
+th{background:var(--accent);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f2}
+tr:nth-child(even) td{background:#fafafa}
+.quiz{background:var(--card);border:2px solid #e5e5e7;border-radius:var(--radius);padding:18px;margin:14px 0}
+.quiz h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-option{display:block;width:100%;padding:10px 14px;margin:6px 0;background:var(--bg);border:1.5px solid transparent;border-radius:10px;font-size:12px;font-family:inherit;cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-option:hover{border-color:#ccc}
+.quiz-option.correct{background:#34c75920;border-color:#34c759}
+.quiz-option.wrong{background:#ff453a15;border-color:#ff453a}
+.quiz-feedback{font-size:12px;color:var(--sub);margin-top:8px;display:none;line-height:1.6}
+.nav-bottom{display:flex;gap:10px;margin-top:30px}
+.nav-btn{flex:1;padding:14px;border-radius:12px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s}
+.nav-btn.prev{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.nav-btn.next{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.quiz{animation:fadeUp 0.4s ease both}
+
+.level-badge{background:#ff453a}
+.stat-val{color:#ff453a}
+.highlight{background:#ff453a12;border-left:3px solid #ff453a}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="level-badge">上級編 #4</div>
+<div class="page-title">ピアコンパリソン</div>
+<div class="page-sub">上場4社の徹底比較——第一生命・T&D・かんぽ・SFG（ソニー）のポジショニング</div>
+
+<div class="card">
+  <h3>📊 上場生保の比較マトリクス</h3>
+  <p>日本で投資可能な生保株は主に4銘柄。それぞれ全く異なるビジネスモデルを持つ。</p>
+  <div class="table-wrap"><table>
+    <tr><th>項目</th><th>第一生命HD<br>(8750)</th><th>T&D HD<br>(8795)</th><th>かんぽ生命<br>(7181)</th><th>SFG<br>(8729)</th></tr>
+    <tr><td>時価総額</td><td>~4兆円</td><td>~1.5兆円</td><td>~1.2兆円</td><td>~3兆円</td></tr>
+    <tr><td>海外比率</td><td>30%超</td><td>5%程度</td><td>ほぼゼロ</td><td>10%程度</td></tr>
+    <tr><td>主力チャネル</td><td>営業職員</td><td>3社体制</td><td>郵便局</td><td>LP制</td></tr>
+    <tr><td>強み</td><td>海外展開</td><td>ニッチ戦略</td><td>ネットワーク</td><td>コンサル力</td></tr>
+    <tr><td>P/EV</td><td>0.5-0.7x</td><td>0.4-0.6x</td><td>—</td><td>—</td></tr>
+  </table></div>
+</div>
+
+<div class="card">
+  <h3>🔍 第一生命HD (8750)</h3>
+  <ul>
+    <li><strong>ポジション</strong>：国内2位＋海外事業で日系最大のグローバル生保グループ</li>
+    <li><strong>強み</strong>：Protective（米国）の高成長、アジア展開（ベトナム・インド等）</li>
+    <li><strong>リスク</strong>：海外事業の統合リスク、為替影響、国内の新契約伸び悩み</li>
+    <li><strong>注目指標</strong>：グループEVの変動分析（国内/海外分離）、海外VNB成長率、為替感応度</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>🔍 T&D HD (8795)</h3>
+  <ul>
+    <li><strong>ポジション</strong>：3社体制でニッチ市場をカバー</li>
+    <li><strong>太陽生命</strong>：高齢者マーケットに強い。認知症保険等のユニーク商品</li>
+    <li><strong>大同生命</strong>：中小企業マーケットに特化。法人保険の安定収益</li>
+    <li><strong>T&Dフィナンシャル</strong>：銀行窓販チャネル。変額保険</li>
+    <li><strong>注目指標</strong>：3社別のVNB・マージン推移、中小企業マーケットの動向</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>🔍 かんぽ生命 (7181)</h3>
+  <ul>
+    <li><strong>ポジション</strong>：全国約24,000の郵便局ネットワークで販売。養老・終身が主力</li>
+    <li><strong>課題</strong>：2019年の不適切販売問題以降、新契約が大幅減少。信頼回復が最優先</li>
+    <li><strong>特徴</strong>：巨大な運用資産（~60兆円）だが、負債デュレーションは相対的に短い</li>
+    <li><strong>注目指標</strong>：新契約件数の回復ペース、運用利回り、政策保有株式の売却</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>🔍 ソニーフィナンシャルG (8729)</h3>
+  <ul>
+    <li><strong>ポジション</strong>：ソニー生命のライフプランナー制度が強力。高付加価値販売</li>
+    <li><strong>強み</strong>：変額保険・外貨建て保険の販売力、高い新契約マージン</li>
+    <li><strong>ソニー損保・ソニー銀行との総合金融グループ</strong></li>
+    <li><strong>注目指標</strong>：LP数と一人当たり生産性、変額保険の運用実績、クロスセル率</li>
+  </ul>
+</div>
+
+<div class="quiz">
+  <h4>🧪 確認クイズ</h4>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:10px">上場生保の中で、海外事業比率が最も高いのはどの会社か？</p>
+  <button class="quiz-option" data-correct="true">第一生命HD</button>
+  <button class="quiz-option" data-correct="false">T&D HD</button>
+  <button class="quiz-option" data-correct="false">かんぽ生命</button>
+  <button class="quiz-option" data-correct="false">ソニーフィナンシャルG</button>
+  <div class="quiz-feedback">✅ 第一生命HDは海外事業比率が30%超で日系生保最大のグローバル展開。Protective（米国）、TAL（豪州）等の子会社がEVの大きな割合を占める。</div>
+</div>
+
+<div class="nav-bottom">
+  <a class="nav-btn prev" href="a3-alm-deep.html">← 前へ</a>
+  <a class="nav-btn next" href="a5-ir-earnings.html">次へ: IR・決算分析 →</a>
+</div>
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance</div>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.quiz-option');const fb=q.querySelector('.quiz-feedback');opts.forEach(o=>{o.addEventListener('click',()=>{if(q.dataset.answered)return;q.dataset.answered='true';opts.forEach(x=>x.style.pointerEvents='none');if(o.dataset.correct==='true'){o.classList.add('correct')}else{o.classList.add('wrong');opts.forEach(x=>{if(x.dataset.correct==='true')x.classList.add('correct')})}if(fb)fb.style.display='block'})})});
+</script>
+</body>
+</html>

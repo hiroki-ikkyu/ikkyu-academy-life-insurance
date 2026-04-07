@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>投資テーマとテーゼ構築 — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.level-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:700;color:#fff;margin-bottom:10px}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px;line-height:1.3}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)}
+.card p{font-size:12.5px;color:var(--sub);line-height:1.75}
+.card ul,.card ol{padding-left:18px;margin:8px 0}
+.card li{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:4px}
+.card li strong{color:var(--text)}
+.formula{background:#f0f0f2;border-radius:10px;padding:14px;margin:12px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;line-height:1.6}
+.highlight{border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.highlight p{color:var(--text)!important;font-weight:500;font-size:12.5px;line-height:1.75}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700}
+.stat-label{font-size:10px;color:var(--sub);margin-top:2px}
+.table-wrap{overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:300px}
+th{background:var(--accent);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f2}
+tr:nth-child(even) td{background:#fafafa}
+.quiz{background:var(--card);border:2px solid #e5e5e7;border-radius:var(--radius);padding:18px;margin:14px 0}
+.quiz h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-option{display:block;width:100%;padding:10px 14px;margin:6px 0;background:var(--bg);border:1.5px solid transparent;border-radius:10px;font-size:12px;font-family:inherit;cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-option:hover{border-color:#ccc}
+.quiz-option.correct{background:#34c75920;border-color:#34c759}
+.quiz-option.wrong{background:#ff453a15;border-color:#ff453a}
+.quiz-feedback{font-size:12px;color:var(--sub);margin-top:8px;display:none;line-height:1.6}
+.nav-bottom{display:flex;gap:10px;margin-top:30px}
+.nav-btn{flex:1;padding:14px;border-radius:12px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s}
+.nav-btn.prev{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.nav-btn.next{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.quiz{animation:fadeUp 0.4s ease both}
+
+.level-badge{background:#ff453a}
+.stat-val{color:#ff453a}
+.highlight{background:#ff453a12;border-left:3px solid #ff453a}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="level-badge">上級編 #2</div>
+<div class="page-title">投資テーマとテーゼ構築</div>
+<div class="page-sub">金利・為替・規制——マクロ変数から生保株の投資テーゼを組み立てる</div>
+
+<div class="card">
+  <h3>🎯 生保株の主要ドライバー</h3>
+  <p>生保株の株価を動かす要因は限られている。マクロ環境と個社要因に分解して整理する。</p>
+  <h4>マクロドライバー（全社共通）</h4>
+  <ul>
+    <li><strong>金利（最重要）</strong>：10年〜30年国債利回り。P/EVの最大の説明変数</li>
+    <li><strong>株式市場</strong>：政策保有株式の含み損益→ANW変動</li>
+    <li><strong>為替</strong>：海外事業のEV、為替ヘッジコスト</li>
+    <li><strong>規制変更</strong>：ESR導入、会計基準変更</li>
+  </ul>
+  <h4>個社ドライバー</h4>
+  <ul>
+    <li><strong>新契約の質と量</strong>：VNB成長、商品ミックス改善</li>
+    <li><strong>海外事業</strong>：M&A、PMI進捗、海外子会社の収益性</li>
+    <li><strong>資本政策</strong>：配当、自社株買い、政策保有株売却</li>
+    <li><strong>コスト効率化</strong>：デジタル化、チャネル改革</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>📊 テーゼ構築のテンプレート</h3>
+  <h4>ブル・テーゼ（強気）の典型パターン</h4>
+  <ul>
+    <li>「金利正常化で利差益がプラス転換、EVは年率15-20%成長。P/EV 0.5xから0.8xへ再評価」</li>
+    <li>「第三分野シフトでマージン改善。VNBが年率5%成長し、APEV法で30%のアップサイド」</li>
+    <li>「政策保有株売却で年間2,000億円のキャッシュ創出。総還元性向50%以上で配当利回り4%超」</li>
+  </ul>
+  <h4>ベア・テーゼ（弱気）の典型パターン</h4>
+  <ul>
+    <li>「金利低下で逆ざや再燃。ESR悪化で資本制約が強まり、配当カットリスク」</li>
+    <li>「国内新契約のマイナス成長が続き、VIFの自然減衰がVNBの積み上げを上回る」</li>
+    <li>「海外M&Aののれん減損リスク。高値掴みの過去の買収が重荷に」</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>🔄 金利上昇シナリオの詳細分析</h3>
+  <p>現在最も注目されるテーマ。BOJの金融政策正常化に伴う生保セクターへのインパクト。</p>
+  <h4>第一段階：短期金利上昇（政策金利引上げ）</h4>
+  <ul>
+    <li>為替ヘッジコストへの影響は限定的（日米金利差は依然大きい）</li>
+    <li>一般勘定の再投資利回り改善は緩やか</li>
+  </ul>
+  <h4>第二段階：長期金利上昇（10年以上）</h4>
+  <ul>
+    <li>EV/ESRへの大きなポジティブインパクト</li>
+    <li>新契約の予定利率引上げ→商品競争力向上→ANP回復</li>
+    <li>保有債券の含み損拡大（ただし満期保有ならP/Lインパクトなし）</li>
+  </ul>
+  <h4>第三段階：イールドカーブのスティープ化</h4>
+  <ul>
+    <li>超長期ゾーン（20-40年）の利回り上昇が最もEV感応度高い</li>
+    <li>ALMマッチングの好機（高利回りで超長期債を調達）</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>💰 資本政策とカタリスト</h3>
+  <ul>
+    <li><strong>政策保有株売却</strong>：年間1,000-3,000億円規模。売却益を還元に回す動き</li>
+    <li><strong>自社株買い</strong>：P/EV 1.0x未満では理論上EV accretive</li>
+    <li><strong>配当性向</strong>：基礎利益の30-50%が標準。引上げ余地あり</li>
+    <li><strong>ESRターゲット</strong>：各社150-200%をターゲットに。超過分を還元に回す</li>
+  </ul>
+  <div class="highlight"><p>💎 「金利上昇×政策保有株売却×資本還元強化」のトリプルカタリストが揃うと、P/EVの大幅な再評価につながる可能性がある。</p></div>
+</div>
+
+<div class="quiz">
+  <h4>🧪 確認クイズ</h4>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:10px">生保株のブル・テーゼとして最も説得力のある論点は？</p>
+  <button class="quiz-option" data-correct="false">為替が円安に進むため外貨建て利益が増加する</button>
+  <button class="quiz-option" data-correct="true">金利正常化でEV改善＋政策保有株売却で資本還元余力が拡大</button>
+  <button class="quiz-option" data-correct="false">デジタル化で事業費が半減する</button>
+  <button class="quiz-option" data-correct="false">少子化で競合が減少し市場シェアが拡大する</button>
+  <div class="quiz-feedback">✅ 金利正常化はEV/ESRを構造的に改善し、政策保有株売却はSCR削減（ESR改善）とキャッシュ創出を同時に実現。この組み合わせが最もインパクトが大きい。</div>
+</div>
+
+<div class="nav-bottom">
+  <a class="nav-btn prev" href="a1-valuation-model.html">← 前へ</a>
+  <a class="nav-btn next" href="a3-alm-deep.html">次へ: ALM深掘り →</a>
+</div>
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance</div>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.quiz-option');const fb=q.querySelector('.quiz-feedback');opts.forEach(o=>{o.addEventListener('click',()=>{if(q.dataset.answered)return;q.dataset.answered='true';opts.forEach(x=>x.style.pointerEvents='none');if(o.dataset.correct==='true'){o.classList.add('correct')}else{o.classList.add('wrong');opts.forEach(x=>{if(x.dataset.correct==='true')x.classList.add('correct')})}if(fb)fb.style.display='block'})})});
+</script>
+</body>
+</html>

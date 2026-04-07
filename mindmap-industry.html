@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>生保業界 全体構造マップ — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.page-title{font-size:22px;font-weight:700;margin-bottom:6px;letter-spacing:-0.5px}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+
+/* Mind Map SVG */
+.map-container{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.map-container svg{display:block;margin:0 auto}
+
+/* Node cards for detail */
+.node-section{margin-bottom:20px}
+.node-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.node-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.node-title{font-size:15px;font-weight:700}
+.node-card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);margin-bottom:10px}
+.node-card h4{font-size:13px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.node-card p,.node-card li{font-size:12px;color:var(--sub);line-height:1.7}
+.node-card ul{padding-left:16px;margin-top:6px}
+.node-card li{margin-bottom:4px}
+
+/* Key Metrics */
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.metric-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.metric-val{font-size:18px;font-weight:700}
+.metric-label{font-size:10px;color:var(--sub);margin-top:2px}
+
+/* Expandable */
+.expand-btn{width:100%;padding:12px;background:var(--card);border:1px solid #e5e5e7;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;margin-bottom:10px;text-align:left;display:flex;justify-content:space-between;align-items:center;font-family:inherit}
+.expand-btn:active{background:var(--bg)}
+.expand-content{display:none;padding:0 0 16px}
+.expand-content.open{display:block}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.node-section{animation:fadeUp 0.4s ease both}
+.node-section:nth-child(2){animation-delay:0.05s}
+.node-section:nth-child(3){animation-delay:0.1s}
+.node-section:nth-child(4){animation-delay:0.15s}
+.node-section:nth-child(5){animation-delay:0.2s}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="page-title">🗺️ 生保業界 全体構造マップ</div>
+<div class="page-sub">保険料収入→資産運用→保険金支払のバリューチェーンと業界エコシステムを一枚で理解する</div>
+
+<!-- Mind Map SVG -->
+<div class="map-container">
+<svg viewBox="0 0 680 520" xmlns="http://www.w3.org/2000/svg" style="min-width:600px">
+  <!-- Center -->
+  <rect x="260" y="230" width="160" height="60" rx="14" fill="#2c2c2e"/>
+  <text x="340" y="256" text-anchor="middle" fill="#fff" font-family="DM Sans,sans-serif" font-size="13" font-weight="700">生命保険会社</text>
+  <text x="340" y="274" text-anchor="middle" fill="#86868b" font-family="DM Sans,sans-serif" font-size="10">Life Insurer</text>
+
+  <!-- Branch 1: Revenue (top-left) -->
+  <line x1="280" y1="230" x2="120" y2="80" stroke="#34c759" stroke-width="2" opacity="0.5"/>
+  <rect x="40" y="50" width="160" height="55" rx="12" fill="#34c759" fill-opacity="0.1" stroke="#34c759" stroke-width="1.5"/>
+  <text x="120" y="73" text-anchor="middle" fill="#34c759" font-family="DM Sans,sans-serif" font-size="12" font-weight="700">💰 保険料収入</text>
+  <text x="120" y="90" text-anchor="middle" fill="#86868b" font-family="DM Sans,sans-serif" font-size="9">Premium Income</text>
+
+  <!-- Sub-branches: Revenue -->
+  <line x1="80" y1="50" x2="50" y2="20" stroke="#34c759" stroke-width="1" opacity="0.3"/>
+  <text x="50" y="16" text-anchor="middle" fill="#2c2c2e" font-family="DM Sans,sans-serif" font-size="9">個人保険</text>
+  <line x1="120" y1="50" x2="120" y2="18" stroke="#34c759" stroke-width="1" opacity="0.3"/>
+  <text x="120" y="14" text-anchor="middle" fill="#2c2c2e" font-family="DM Sans,sans-serif" font-size="9">団体保険</text>
+  <line x1="160" y1="50" x2="190" y2="20" stroke="#34c759" stroke-width="1" opacity="0.3"/>
+  <text x="190" y="16" text-anchor="middle" fill="#2c2c2e" font-family="DM Sans,sans-serif" font-size="9">年金保険</text>
+
+  <!-- Branch 2: Asset Management (top-right) -->
+  <line x1="400" y1="230" x2="540" y2="80" stroke="#0071e3" stroke-width="2" opacity="0.5"/>
+  <rect x="460" y="50" width="180" height="55" rx="12" fill="#0071e3" fill-opacity="0.1" stroke="#0071e3" stroke-width="1.5"/>
+  <text x="550" y="73" text-anchor="middle" fill="#0071e3" font-family="DM Sans,sans-serif" font-size="12" font-weight="700">📈 資産運用</text>
+  <text x="550" y="90" text-anchor="middle" fill="#86868b" font-family="DM Sans,sans-serif" font-size="9">Asset Management</text>
+
+  <line x1="500" y1="50" x2="470" y2="18" stroke="#0071e3" stroke-width="1" opacity="0.3"/>
+  <text x="470" y="14" text-anchor="middle" fill="#2c2c2e" font-family="DM Sans,sans-serif" font-size="9">国内債券</text>
+  <line x1="540" y1="50" x2="540" y2="18" stroke="#0071e3" stroke-width="1" opacity="0.3"/>
+  <text x="540" y="14" text-anchor="middle" fill="#2c2c2e" font-family="DM Sans,sans-serif" font-size="9">外国証券</text>
+  <line x1="590" y1="50" x2="620" y2="18" stroke="#0071e3" stroke-width="1" opacity="0.3"/>
+  <text x="620" y="14" text-anchor="middle" fill="#2c2c2e" font-family="DM Sans,sans-serif" font-size="9">株式・不動産</text>
+
+  <!-- Branch 3: Payments (bottom-left) -->
+  <line x1="280" y1="290" x2="120" y2="420" stroke="#ff453a" stroke-width="2" opacity="0.5"/>
+  <rect x="30" y="395" width="180" height="55" rx="12" fill="#ff453a" fill-opacity="0.1" stroke="#ff453a" stroke-width="1.5"/>
+  <text x="120" y="418" text-anchor="middle" fill="#ff453a" font-family="DM Sans,sans-serif" font-size="12" font-weight="700">🏥 保険金・給付金</text>
+  <text x="120" y="435" text-anchor="middle" fill="#86868b" font-family="DM Sans,sans-serif" font-size="9">Claims & Benefits</text>
+
+  <line x1="70" y1="450" x2="40" y2="485" stroke="#ff453a" stroke-width="1" opacity="0.3"/>
+  <text x="40" y="498" text-anchor="middle" fill="#2c2c2e" font-family="DM Sans,sans-serif" font-size="9">死亡保険金</text>
+  <line x1="120" y1="450" x2="120" y2="485" stroke="#ff453a" stroke-width="1" opacity="0.3"/>
+  <text x="120" y="498" text-anchor="middle" fill="#2c2c2e" font-family="DM Sans,sans-serif" font-size="9">入院給付金</text>
+  <line x1="170" y1="450" x2="200" y2="485" stroke="#ff453a" stroke-width="1" opacity="0.3"/>
+  <text x="200" y="498" text-anchor="middle" fill="#2c2c2e" font-family="DM Sans,sans-serif" font-size="9">満期保険金</text>
+
+  <!-- Branch 4: Regulation (bottom-right) -->
+  <line x1="400" y1="290" x2="540" y2="420" stroke="#bf5af2" stroke-width="2" opacity="0.5"/>
+  <rect x="460" y="395" width="180" height="55" rx="12" fill="#bf5af2" fill-opacity="0.1" stroke="#bf5af2" stroke-width="1.5"/>
+  <text x="550" y="418" text-anchor="middle" fill="#bf5af2" font-family="DM Sans,sans-serif" font-size="12" font-weight="700">⚖️ 規制・監督</text>
+  <text x="550" y="435" text-anchor="middle" fill="#86868b" font-family="DM Sans,sans-serif" font-size="9">Regulation</text>
+
+  <line x1="500" y1="450" x2="470" y2="485" stroke="#bf5af2" stroke-width="1" opacity="0.3"/>
+  <text x="470" y="498" text-anchor="middle" fill="#2c2c2e" font-family="DM Sans,sans-serif" font-size="9">保険業法</text>
+  <line x1="550" y1="450" x2="550" y2="485" stroke="#bf5af2" stroke-width="1" opacity="0.3"/>
+  <text x="550" y="498" text-anchor="middle" fill="#2c2c2e" font-family="DM Sans,sans-serif" font-size="9">ソルベンシー</text>
+  <line x1="600" y1="450" x2="630" y2="485" stroke="#bf5af2" stroke-width="1" opacity="0.3"/>
+  <text x="630" y="498" text-anchor="middle" fill="#2c2c2e" font-family="DM Sans,sans-serif" font-size="9">ESR規制</text>
+
+  <!-- Branch 5: Distribution (left) -->
+  <line x1="260" y1="260" x2="60" y2="260" stroke="#ff9f0a" stroke-width="2" opacity="0.5"/>
+  <rect x="0" y="225" width="140" height="50" rx="12" fill="#ff9f0a" fill-opacity="0.1" stroke="#ff9f0a" stroke-width="1.5"/>
+  <text x="70" y="248" text-anchor="middle" fill="#ff9f0a" font-family="DM Sans,sans-serif" font-size="11" font-weight="700">🏪 販売チャネル</text>
+  <text x="70" y="263" text-anchor="middle" fill="#86868b" font-family="DM Sans,sans-serif" font-size="9">Distribution</text>
+
+  <!-- Branch 6: EV/Valuation (right) -->
+  <line x1="420" y1="260" x2="580" y2="260" stroke="#5ac8fa" stroke-width="2" opacity="0.5"/>
+  <rect x="540" y="225" width="140" height="50" rx="12" fill="#5ac8fa" fill-opacity="0.1" stroke="#5ac8fa" stroke-width="1.5"/>
+  <text x="610" y="248" text-anchor="middle" fill="#0071e3" font-family="DM Sans,sans-serif" font-size="11" font-weight="700">💎 EV / MCEV</text>
+  <text x="610" y="263" text-anchor="middle" fill="#86868b" font-family="DM Sans,sans-serif" font-size="9">Valuation</text>
+</svg>
+</div>
+
+<!-- Detail Sections -->
+<div class="node-section">
+  <div class="node-header"><div class="node-dot" style="background:#34c759"></div><div class="node-title">保険料収入（Premium Income）</div></div>
+  <div class="node-card">
+    <h4>💡 生保の"売上"に相当</h4>
+    <p>生命保険会社の収益の源泉。契約者が支払う保険料は以下の3つに分解される：</p>
+    <ul>
+      <li><strong>純保険料</strong> — 将来の保険金支払いに充当（予定死亡率で計算）</li>
+      <li><strong>付加保険料</strong> — 事業費に充当（予定事業費率で計算）</li>
+      <li><strong>貯蓄保険料</strong> — 積立部分（予定利率で運用）</li>
+    </ul>
+    <div class="metrics-grid">
+      <div class="metric-box"><div class="metric-val" style="color:#34c759">¥35兆</div><div class="metric-label">業界保険料収入（年間）</div></div>
+      <div class="metric-box"><div class="metric-val" style="color:#34c759">88%</div><div class="metric-label">個人保険の割合</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="node-section">
+  <div class="node-header"><div class="node-dot" style="background:#0071e3"></div><div class="node-title">資産運用（Asset Management）</div></div>
+  <div class="node-card">
+    <h4>💡 生保の真のエンジン</h4>
+    <p>集めた保険料を運用して利益を生む。生保の運用資産は約400兆円に達し、日本の機関投資家として最大級。</p>
+    <ul>
+      <li><strong>国内債券</strong> — ポートフォリオの40-50%。超長期国債（30年/40年）が主力</li>
+      <li><strong>外国証券</strong> — 20-30%。米国債・IG社債。為替ヘッジコストが重要</li>
+      <li><strong>株式</strong> — 5-10%。政策保有株の売却が進行中</li>
+      <li><strong>不動産・ローン</strong> — 5-10%。不動産は生保ビルなど</li>
+    </ul>
+    <div class="metrics-grid">
+      <div class="metric-box"><div class="metric-val" style="color:#0071e3">¥400兆</div><div class="metric-label">業界総資産</div></div>
+      <div class="metric-box"><div class="metric-val" style="color:#0071e3">2-3%</div><div class="metric-label">基礎利回り目安</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="node-section">
+  <div class="node-header"><div class="node-dot" style="background:#ff453a"></div><div class="node-title">保険金・給付金（Claims）</div></div>
+  <div class="node-card">
+    <h4>💡 負債サイドのキー</h4>
+    <p>保険事故発生時に支払う保険金・給付金。「死差益」が出るかどうかは、実際の死亡率が予定死亡率を下回るかで決まる。</p>
+    <ul>
+      <li><strong>死亡保険金</strong> — 被保険者死亡時の支払い</li>
+      <li><strong>入院・手術給付金</strong> — 第三分野（医療保険）</li>
+      <li><strong>満期保険金</strong> — 養老保険の満期到来時</li>
+      <li><strong>解約返戻金</strong> — 中途解約時（解約損益に影響）</li>
+    </ul>
+  </div>
+</div>
+
+<div class="node-section">
+  <div class="node-header"><div class="node-dot" style="background:#bf5af2"></div><div class="node-title">規制・監督（Regulation）</div></div>
+  <div class="node-card">
+    <h4>💡 規制が利益構造を決める</h4>
+    <p>金融庁が監督。保険業法に基づく免許制で、参入障壁は極めて高い。</p>
+    <ul>
+      <li><strong>ソルベンシー・マージン比率</strong> — 200%以上が健全性の目安</li>
+      <li><strong>ESR（経済価値ベースソルベンシー比率）</strong> — 2025年度から導入。資産・負債を時価評価</li>
+      <li><strong>標準利率</strong> — 金融庁が設定。責任準備金の積立基準</li>
+      <li><strong>標準責任準備金制度</strong> — 契約の安全を保証する積立義務</li>
+    </ul>
+  </div>
+</div>
+
+<div class="node-section">
+  <div class="node-header"><div class="node-dot" style="background:#5ac8fa"></div><div class="node-title">EV / MCEV（企業価値指標）</div></div>
+  <div class="node-card">
+    <h4>💡 生保版のNAV</h4>
+    <p>生命保険会社の真の価値を測るための指標。通常のPER/PBRだけでは把握できない保険契約の内在価値を可視化する。</p>
+    <ul>
+      <li><strong>修正純資産</strong> — 帳簿上の純資産＋含み損益等</li>
+      <li><strong>保有契約価値</strong> — 既存契約から将来得られる利益の現在価値</li>
+      <li><strong>EV = 修正純資産 + 保有契約価値</strong></li>
+      <li><strong>新契約価値</strong> — 当期新規契約の将来利益の現在価値</li>
+    </ul>
+    <div class="metrics-grid">
+      <div class="metric-box"><div class="metric-val" style="color:#0071e3">P/EV</div><div class="metric-label">株価 ÷ EV</div></div>
+      <div class="metric-box"><div class="metric-val" style="color:#0071e3">0.3-0.8x</div><div class="metric-label">日本生保の典型レンジ</div></div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance Mind Map</div>
+</div>
+</body>
+</html>

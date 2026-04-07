@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>生命保険とは何か — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.level-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:700;color:#fff;background:#34c759;margin-bottom:10px}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)}
+.card p{font-size:12.5px;color:var(--sub);line-height:1.75}
+.card ul{padding-left:18px;margin:8px 0}
+.card li{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:4px}
+.card li strong{color:var(--text)}
+.formula{background:#f0f0f2;border-radius:10px;padding:14px;margin:12px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;line-height:1.6}
+.highlight{background:#34c75912;border-left:3px solid #34c759;border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.highlight p{color:var(--text)!important;font-weight:500}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700;color:#34c759}
+.stat-label{font-size:10px;color:var(--sub);margin-top:2px}
+.quiz{background:var(--card);border:2px solid #e5e5e7;border-radius:var(--radius);padding:18px;margin:14px 0}
+.quiz h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-option{display:block;width:100%;padding:10px 14px;margin:6px 0;background:var(--bg);border:1.5px solid transparent;border-radius:10px;font-size:12px;font-family:inherit;cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-option:hover{border-color:#ccc}
+.quiz-option.correct{background:#34c75920;border-color:#34c759}
+.quiz-option.wrong{background:#ff453a15;border-color:#ff453a}
+.quiz-feedback{font-size:12px;color:var(--sub);margin-top:8px;display:none;line-height:1.6}
+.nav-bottom{display:flex;gap:10px;margin-top:30px}
+.nav-btn{flex:1;padding:14px;border-radius:12px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s}
+.nav-btn.prev{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.nav-btn.next{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.quiz{animation:fadeUp 0.4s ease both}
+.card:nth-child(n+3){animation-delay:calc(0.05s * (var(--i,0)))}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="level-badge">入門編 #1</div>
+<div class="page-title">生命保険とは何か</div>
+<div class="page-sub">保険の本質的な仕組み——リスクプーリング・大数の法則・逆選択——をアナリスト視点で理解する</div>
+
+<div class="card">
+  <h3>🎯 保険の本質：リスクの移転と分散</h3>
+  <p>生命保険の本質は「個人が抱える経済的リスクを、大勢の集団に分散する仕組み」。被保険者の死亡・疾病・長生きといった不確実性に対し、保険料というコストで経済的損失をヘッジする金融商品である。</p>
+  <h4>保険の3つの基本原理</h4>
+  <ul>
+    <li><strong>大数の法則</strong> — 個々の死亡は予測不能だが、10万人の集団なら年間死亡率は極めて正確に予測できる。これが保険数理の基盤</li>
+    <li><strong>収支相等の原則</strong> — 保険料総額と保険金支払総額が等しくなるように保険料を設計（付加保険料を除く）</li>
+    <li><strong>給付・反対給付均等の原則</strong> — 個人の支払う保険料はそのリスク（年齢・性別・健康状態）に見合ったものにする</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>💡 アナリスト視点：なぜ保険会社は儲かるのか</h3>
+  <p>保険会社の利益メカニズムを理解することが分析の出発点。保険料は以下のように分解される：</p>
+  <div class="formula">保険料 = 純保険料（リスク対価）+ 付加保険料（事業費）</div>
+  <div class="formula">純保険料 = 危険保険料（死亡コスト）+ 貯蓄保険料（積立分）</div>
+  <p>利益が生まれるのは、3つの「予定」と「実績」のギャップから：</p>
+  <ul>
+    <li><strong>予定死亡率 &gt; 実績死亡率</strong> → 死差益（最大の利益源）</li>
+    <li><strong>予定利率 &lt; 実績運用利回り</strong> → 利差益（金利環境次第）</li>
+    <li><strong>予定事業費率 &gt; 実績事業費率</strong> → 費差益（効率化で改善）</li>
+  </ul>
+  <div class="highlight"><p>💎 日本の大手生保では死差益が利益の6-7割を占める。これは保守的な死亡率設定と長寿化トレンドの組み合わせ。</p></div>
+</div>
+
+<div class="card">
+  <h3>⚠️ 保険市場の情報の非対称性</h3>
+  <h4>逆選択（Adverse Selection）</h4>
+  <p>健康状態の悪い人ほど保険に加入するインセンティブが高い。保険会社は引受審査（アンダーライティング）で対応。</p>
+  <h4>モラルハザード</h4>
+  <p>保険に加入することで、リスク回避行動が弱まる可能性。免責期間や保険金額の上限設定で対応。</p>
+  <h4>アナリストが見るべきポイント</h4>
+  <ul>
+    <li>引受基準の厳格さ（＝将来の死差益の安定性に直結）</li>
+    <li>告知義務違反率・不払い率のトレンド</li>
+    <li>引受除外条件の変更（緩和→成長、厳格化→利益率重視）</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>📊 日本の生保市場：数字で掴む</h3>
+  <div class="grid-2">
+    <div class="stat-box"><div class="stat-val">¥35兆</div><div class="stat-label">保険料等収入（年間）</div></div>
+    <div class="stat-box"><div class="stat-val">42社</div><div class="stat-label">生命保険会社数</div></div>
+    <div class="stat-box"><div class="stat-val">88%</div><div class="stat-label">世帯加入率</div></div>
+    <div class="stat-box"><div class="stat-val">¥400兆</div><div class="stat-label">総資産規模</div></div>
+  </div>
+  <p>日本は米国に次ぐ世界第2位の生保市場。世帯加入率は88%と世界トップクラスだが、少子高齢化で新契約は伸び悩み。各社は第三分野（医療・がん保険）と海外展開で成長を模索している。</p>
+</div>
+
+<div class="quiz">
+  <h4>🧪 確認クイズ</h4>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:10px">日本の大手生保において、基礎利益のうち最も大きな割合を占めるのは？</p>
+  <button class="quiz-option" data-correct="false">利差益（運用収益から生まれる利益）</button>
+  <button class="quiz-option" data-correct="true">死差益（死亡率ギャップから生まれる利益）</button>
+  <button class="quiz-option" data-correct="false">費差益（事業費効率化から生まれる利益）</button>
+  <button class="quiz-option" data-correct="false">キャピタルゲイン（有価証券売却益）</button>
+  <div class="quiz-feedback">✅ 正解は死差益。日本の大手生保では基礎利益の60-70%を死差益が占める。保守的に設定された予定死亡率と、実際の長寿化トレンドのギャップが構造的な利益を生んでいる。</div>
+</div>
+
+<div class="nav-bottom">
+  <a class="nav-btn prev" href="../index.html">← 一覧</a>
+  <a class="nav-btn next" href="b2-product-types.html">次へ: 商品体系 →</a>
+</div>
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance</div>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.quiz-option');const fb=q.querySelector('.quiz-feedback');opts.forEach(o=>{o.addEventListener('click',()=>{if(q.dataset.answered)return;q.dataset.answered='true';opts.forEach(x=>x.style.pointerEvents='none');if(o.dataset.correct==='true'){o.classList.add('correct')}else{o.classList.add('wrong');opts.forEach(x=>{if(x.dataset.correct==='true')x.classList.add('correct')})}if(fb)fb.style.display='block'})})});
+</script>
+</body>
+</html>

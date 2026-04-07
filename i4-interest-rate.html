@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>金利感応度分析 — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.level-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:700;color:#fff;margin-bottom:10px}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px;line-height:1.3}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)}
+.card p{font-size:12.5px;color:var(--sub);line-height:1.75}
+.card ul,.card ol{padding-left:18px;margin:8px 0}
+.card li{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:4px}
+.card li strong{color:var(--text)}
+.formula{background:#f0f0f2;border-radius:10px;padding:14px;margin:12px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;line-height:1.6}
+.highlight{border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.highlight p{color:var(--text)!important;font-weight:500;font-size:12.5px;line-height:1.75}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700}
+.stat-label{font-size:10px;color:var(--sub);margin-top:2px}
+.table-wrap{overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:300px}
+th{background:var(--accent);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f2}
+tr:nth-child(even) td{background:#fafafa}
+.quiz{background:var(--card);border:2px solid #e5e5e7;border-radius:var(--radius);padding:18px;margin:14px 0}
+.quiz h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-option{display:block;width:100%;padding:10px 14px;margin:6px 0;background:var(--bg);border:1.5px solid transparent;border-radius:10px;font-size:12px;font-family:inherit;cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-option:hover{border-color:#ccc}
+.quiz-option.correct{background:#34c75920;border-color:#34c759}
+.quiz-option.wrong{background:#ff453a15;border-color:#ff453a}
+.quiz-feedback{font-size:12px;color:var(--sub);margin-top:8px;display:none;line-height:1.6}
+.nav-bottom{display:flex;gap:10px;margin-top:30px}
+.nav-btn{flex:1;padding:14px;border-radius:12px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s}
+.nav-btn.prev{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.nav-btn.next{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.quiz{animation:fadeUp 0.4s ease both}
+
+.level-badge{background:#ff9f0a}
+.stat-val{color:#ff9f0a}
+.highlight{background:#ff9f0a12;border-left:3px solid #ff9f0a}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="level-badge">中級編 #4</div>
+<div class="page-title">金利感応度分析</div>
+<div class="page-sub">デュレーション・コンベクシティ・金利シナリオ——生保株と金利の関係を定量的に理解する</div>
+
+<div class="card">
+  <h3>📐 なぜ生保は金利に敏感なのか</h3>
+  <p>生保は「超長期の固定利率負債を持つ金融機関」。金利が動くと資産と負債の両方が変動するが、その変動幅が異なるため、純資産（=企業価値）に大きな影響を与える。</p>
+  <div class="formula">ΔEV ≈ −(D_A × MV_A − D_L × MV_L) × Δr</div>
+  <p style="margin-top:8px;font-size:11px;color:var(--sub)">D_A: 資産デュレーション、D_L: 負債デュレーション、MV: 時価、Δr: 金利変化</p>
+</div>
+
+<div class="card">
+  <h3>📊 デュレーション・マッチングの実態</h3>
+  <div class="table-wrap"><table>
+    <tr><th>項目</th><th>典型値</th><th>意味</th></tr>
+    <tr><td>資産デュレーション</td><td>10-15年</td><td>国債・社債等のポートフォリオ平均</td></tr>
+    <tr><td>負債デュレーション</td><td>20-30年</td><td>終身保険等の超長期契約</td></tr>
+    <tr><td>ギャップ</td><td>10-15年</td><td>このギャップが金利感応度の源泉</td></tr>
+    <tr><td>金利+100bpのEV影響</td><td>+15-30%</td><td>会社により大きく異なる</td></tr>
+  </table></div>
+  <div class="highlight"><p>💎 日本の10年国債利回りが1%上昇すると、上場生保の株価は10-20%上昇する経験則がある。ただしこれはEV増加の一部しか織り込まれていないケースが多い。</p></div>
+</div>
+
+<div class="card">
+  <h3>🎚️ 金利シナリオ分析</h3>
+  <h4>シナリオ1: 金利正常化（+100-200bp）</h4>
+  <ul>
+    <li>EV大幅改善、利差益プラス転換</li>
+    <li>新契約の予定利率引き上げ→商品競争力向上</li>
+    <li>ただし保有債券に含み損発生（一時的）</li>
+  </ul>
+  <h4>シナリオ2: 金利横ばい</h4>
+  <ul>
+    <li>現状維持。超長期債の利回りが低いため運用は厳しい</li>
+    <li>為替ヘッジ付外債、オルタナティブで利回り確保</li>
+  </ul>
+  <h4>シナリオ3: 金利急低下（−50bp以下）</h4>
+  <ul>
+    <li>逆ざやリスク再燃、ESR悪化</li>
+    <li>責任準備金の追加積立が必要になる可能性</li>
+    <li>マイナス金利フロア問題（非線形リスク）</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>🔄 コンベクシティの理解</h3>
+  <p>デュレーションは金利変動の「一次近似」。大きな金利変動時にはコンベクシティ（二次項）が重要。</p>
+  <ul>
+    <li>生保の負債は<strong>負のコンベクシティ</strong>を持つことがある（解約オプション、最低保証）</li>
+    <li>金利が大きく動く局面では、デュレーション分析だけでは不十分</li>
+    <li>MCEVのオプション・保証の時間価値（TVOG）がこれをキャプチャー</li>
+  </ul>
+</div>
+
+<div class="quiz">
+  <h4>🧪 確認クイズ</h4>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:10px">金利が100bp上昇した場合、デュレーション・ギャップが15年の生保会社では何が起きるか？</p>
+  <button class="quiz-option" data-correct="false">資産の時価下落が負債の時価下落を上回り、EVが悪化する</button>
+  <button class="quiz-option" data-correct="true">負債の時価下落が資産の時価下落を上回り、EVが改善する</button>
+  <button class="quiz-option" data-correct="false">資産と負債が同額変動するためEVは変化しない</button>
+  <button class="quiz-option" data-correct="false">コンベクシティ効果により予測不能</button>
+  <div class="quiz-feedback">✅ デュレーション・ギャップが正（負債D>資産D）の場合、金利上昇時に負債の時価減少額が資産を上回るため、ネットでEV（適格資本）が改善する。</div>
+</div>
+
+<div class="nav-bottom">
+  <a class="nav-btn prev" href="i3-esr-solvency.html">← 前へ</a>
+  <a class="nav-btn next" href="i5-new-business.html">次へ: 新契約分析 →</a>
+</div>
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance</div>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.quiz-option');const fb=q.querySelector('.quiz-feedback');opts.forEach(o=>{o.addEventListener('click',()=>{if(q.dataset.answered)return;q.dataset.answered='true';opts.forEach(x=>x.style.pointerEvents='none');if(o.dataset.correct==='true'){o.classList.add('correct')}else{o.classList.add('wrong');opts.forEach(x=>{if(x.dataset.correct==='true')x.classList.add('correct')})}if(fb)fb.style.display='block'})})});
+</script>
+</body>
+</html>

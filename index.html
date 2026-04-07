@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Academy — 生保業界</title>
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#f5f5f7">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;
+  --accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;
+  --red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;
+  --radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06);
+}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.container{max-width:430px;margin:0 auto;padding:0 20px 100px}
+
+/* Header */
+.header{padding:60px 0 32px;text-align:center}
+.header-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:16px}
+.header h1{font-size:28px;font-weight:700;letter-spacing:-0.5px;line-height:1.2}
+.header h1 span{display:block;font-size:15px;font-weight:500;color:var(--sub);margin-top:4px;letter-spacing:0}
+.header-stats{display:flex;justify-content:center;gap:24px;margin-top:20px}
+.header-stat{text-align:center}
+.header-stat .num{font-size:22px;font-weight:700;color:var(--accent)}
+.header-stat .label{font-size:11px;color:var(--sub);margin-top:2px}
+
+/* Tabs */
+.tabs{display:flex;gap:6px;padding:4px;background:var(--card);border-radius:12px;margin-bottom:24px;box-shadow:var(--shadow)}
+.tab{flex:1;padding:10px 0;text-align:center;font-size:12px;font-weight:600;border-radius:10px;cursor:pointer;transition:all 0.2s;color:var(--sub);position:relative}
+.tab.active{background:var(--accent);color:#fff}
+.tab .count{font-size:9px;position:absolute;top:4px;right:8px;background:var(--sub);color:#fff;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.tab.active .count{background:rgba(255,255,255,0.3)}
+
+/* Content Sections */
+.section{display:none}
+.section.active{display:block}
+
+/* Mind Map */
+.mindmap-card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:20px;box-shadow:var(--shadow);cursor:pointer;transition:transform 0.2s,box-shadow 0.2s}
+.mindmap-card:active{transform:scale(0.98)}
+.mindmap-label{font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px}
+.mindmap-title{font-size:16px;font-weight:700;margin-bottom:4px}
+.mindmap-desc{font-size:12px;color:var(--sub);line-height:1.5}
+
+/* Lesson Cards */
+.lesson-card{background:var(--card);border-radius:var(--radius);padding:16px 18px;margin-bottom:10px;box-shadow:var(--shadow);display:flex;align-items:center;gap:14px;cursor:pointer;transition:transform 0.15s;text-decoration:none;color:inherit}
+.lesson-card:active{transform:scale(0.98)}
+.lesson-num{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+.lesson-info{flex:1;min-width:0}
+.lesson-title{font-size:14px;font-weight:600;line-height:1.3}
+.lesson-meta{font-size:11px;color:var(--sub);margin-top:3px;display:flex;align-items:center;gap:8px}
+.lesson-arrow{color:var(--sub);font-size:16px;flex-shrink:0}
+
+/* Section Headers */
+.section-header{display:flex;align-items:center;gap:10px;margin:24px 0 14px}
+.section-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.section-label{font-size:13px;font-weight:700;letter-spacing:-0.2px}
+
+/* Level colors */
+.beginner{background:#34c759}.intermediate{background:#ff9f0a}.advanced{background:#ff453a}
+.bg-beginner{background:rgba(52,199,89,0.1)}.bg-intermediate{background:rgba(255,159,10,0.1)}.bg-advanced{background:rgba(255,69,58,0.1)}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.lesson-card,.mindmap-card{animation:fadeUp 0.35s ease both}
+.lesson-card:nth-child(2){animation-delay:0.04s}
+.lesson-card:nth-child(3){animation-delay:0.08s}
+.lesson-card:nth-child(4){animation-delay:0.12s}
+.lesson-card:nth-child(5){animation-delay:0.16s}
+.lesson-card:nth-child(6){animation-delay:0.2s}
+.lesson-card:nth-child(7){animation-delay:0.24s}
+.lesson-card:nth-child(8){animation-delay:0.28s}
+
+/* Footer */
+.footer{text-align:center;padding:40px 0 20px;font-size:11px;color:var(--sub)}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="header-badge">🏛️ Academy</div>
+    <h1>生保業界<span>Life Insurance Industry — 基礎から戦略まで</span></h1>
+    <div class="header-stats">
+      <div class="header-stat"><div class="num">20</div><div class="label">レッスン</div></div>
+      <div class="header-stat"><div class="num">3</div><div class="label">レベル</div></div>
+      <div class="header-stat"><div class="num">2</div><div class="label">マインドマップ</div></div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tab active" data-tab="map">マップ</div>
+    <div class="tab" data-tab="beginner">入門<span class="count">8</span></div>
+    <div class="tab" data-tab="intermediate">中級<span class="count">7</span></div>
+    <div class="tab" data-tab="advanced">上級<span class="count">5</span></div>
+  </div>
+
+  <!-- ===== MAP TAB ===== -->
+  <div class="section active" id="map">
+    <div class="mindmap-card" onclick="location.href='pages/mindmap-industry.html'">
+      <div class="mindmap-label">🗺️ Mind Map</div>
+      <div class="mindmap-title">生保業界 全体構造マップ</div>
+      <div class="mindmap-desc">保険料収入→運用→支払のバリューチェーン、規制、主要プレーヤー、EV/MCEV概念を一枚で俯瞰</div>
+    </div>
+    <div class="mindmap-card" onclick="location.href='pages/mindmap-analysis.html'">
+      <div class="mindmap-label">📊 Mind Map</div>
+      <div class="mindmap-title">生保分析フレームワーク</div>
+      <div class="mindmap-desc">EV分析、ALM、ESR、新契約価値、死差・利差・費差の三利源を体系的に整理</div>
+    </div>
+
+    <!-- Quick Access -->
+    <div class="section-header">
+      <div class="section-icon bg-beginner">📗</div>
+      <div class="section-label">入門編 — 業界構造</div>
+    </div>
+    <a class="lesson-card" href="pages/b1-what-is-life-insurance.html"><div class="lesson-num beginner">1</div><div class="lesson-info"><div class="lesson-title">生命保険とは何か</div><div class="lesson-meta"><span>⏱ 8分</span><span>保険の本質</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/b2-product-types.html"><div class="lesson-num beginner">2</div><div class="lesson-info"><div class="lesson-title">商品体系を理解する</div><div class="lesson-meta"><span>⏱ 10分</span><span>定期・終身・養老・変額</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/b3-industry-structure.html"><div class="lesson-num beginner">3</div><div class="lesson-info"><div class="lesson-title">業界構造と主要プレーヤー</div><div class="lesson-meta"><span>⏱ 10分</span><span>相互会社 vs 株式会社</span></div></div><div class="lesson-arrow">›</div></a>
+
+    <div class="section-header">
+      <div class="section-icon bg-intermediate">📙</div>
+      <div class="section-label">中級編 — 運用実務</div>
+    </div>
+    <a class="lesson-card" href="pages/i1-general-account.html"><div class="lesson-num intermediate">1</div><div class="lesson-info"><div class="lesson-title">一般勘定の資産運用</div><div class="lesson-meta"><span>⏱ 12分</span><span>ALM・超長期債</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/i2-ev-analysis.html"><div class="lesson-num intermediate">2</div><div class="lesson-info"><div class="lesson-title">EV / MCEV分析</div><div class="lesson-meta"><span>⏱ 15分</span><span>エンベディッドバリュー</span></div></div><div class="lesson-arrow">›</div></a>
+
+    <div class="section-header">
+      <div class="section-icon bg-advanced">📕</div>
+      <div class="section-label">上級編 — 分析・戦略</div>
+    </div>
+    <a class="lesson-card" href="pages/a1-valuation-model.html"><div class="lesson-num advanced">1</div><div class="lesson-info"><div class="lesson-title">バリュエーション・モデル構築</div><div class="lesson-meta"><span>⏱ 20分</span><span>EV+新契約倍率</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/a2-investment-thesis.html"><div class="lesson-num advanced">2</div><div class="lesson-info"><div class="lesson-title">投資テーマとテーゼ構築</div><div class="lesson-meta"><span>⏱ 18分</span><span>金利上昇シナリオ</span></div></div><div class="lesson-arrow">›</div></a>
+  </div>
+
+  <!-- ===== BEGINNER TAB ===== -->
+  <div class="section" id="beginner">
+    <div class="section-header"><div class="section-icon bg-beginner">📗</div><div class="section-label">入門編 — 業界構造を理解する</div></div>
+    <a class="lesson-card" href="pages/b1-what-is-life-insurance.html"><div class="lesson-num beginner">1</div><div class="lesson-info"><div class="lesson-title">生命保険とは何か</div><div class="lesson-meta"><span>⏱ 8分</span><span>リスクプーリング・大数の法則</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/b2-product-types.html"><div class="lesson-num beginner">2</div><div class="lesson-info"><div class="lesson-title">商品体系を理解する</div><div class="lesson-meta"><span>⏱ 10分</span><span>定期・終身・養老・変額・第三分野</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/b3-industry-structure.html"><div class="lesson-num beginner">3</div><div class="lesson-info"><div class="lesson-title">業界構造と主要プレーヤー</div><div class="lesson-meta"><span>⏱ 10分</span><span>相互会社・株式会社・外資系</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/b4-regulation.html"><div class="lesson-num beginner">4</div><div class="lesson-info"><div class="lesson-title">規制・監督の枠組み</div><div class="lesson-meta"><span>⏱ 10分</span><span>保険業法・金融庁・ソルベンシー</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/b5-pnl-structure.html"><div class="lesson-num beginner">5</div><div class="lesson-info"><div class="lesson-title">生保の損益構造</div><div class="lesson-meta"><span>⏱ 12分</span><span>三利源：死差・利差・費差</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/b6-balance-sheet.html"><div class="lesson-num beginner">6</div><div class="lesson-info"><div class="lesson-title">バランスシートの読み方</div><div class="lesson-meta"><span>⏱ 12分</span><span>責任準備金・一般勘定資産</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/b7-distribution.html"><div class="lesson-num beginner">7</div><div class="lesson-info"><div class="lesson-title">販売チャネルと顧客接点</div><div class="lesson-meta"><span>⏱ 8分</span><span>営業職員・銀行窓販・ネット</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/b8-global-comparison.html"><div class="lesson-num beginner">8</div><div class="lesson-info"><div class="lesson-title">グローバル比較</div><div class="lesson-meta"><span>⏱ 10分</span><span>日米欧の生保市場</span></div></div><div class="lesson-arrow">›</div></a>
+  </div>
+
+  <!-- ===== INTERMEDIATE TAB ===== -->
+  <div class="section" id="intermediate">
+    <div class="section-header"><div class="section-icon bg-intermediate">📙</div><div class="section-label">中級編 — 運用実務</div></div>
+    <a class="lesson-card" href="pages/i1-general-account.html"><div class="lesson-num intermediate">1</div><div class="lesson-info"><div class="lesson-title">一般勘定の資産運用</div><div class="lesson-meta"><span>⏱ 12分</span><span>ALM・債券ポートフォリオ</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/i2-ev-analysis.html"><div class="lesson-num intermediate">2</div><div class="lesson-info"><div class="lesson-title">EV / MCEV分析入門</div><div class="lesson-meta"><span>⏱ 15分</span><span>エンベディッドバリュー</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/i3-esr-solvency.html"><div class="lesson-num intermediate">3</div><div class="lesson-info"><div class="lesson-title">ESR・ソルベンシー規制</div><div class="lesson-meta"><span>⏱ 12分</span><span>経済価値ベース規制</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/i4-interest-rate.html"><div class="lesson-num intermediate">4</div><div class="lesson-info"><div class="lesson-title">金利感応度分析</div><div class="lesson-meta"><span>⏱ 14分</span><span>デュレーション・コンベクシティ</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/i5-new-business.html"><div class="lesson-num intermediate">5</div><div class="lesson-info"><div class="lesson-title">新契約分析</div><div class="lesson-meta"><span>⏱ 12分</span><span>新契約価値・マージン</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/i6-overseas-ma.html"><div class="lesson-num intermediate">6</div><div class="lesson-info"><div class="lesson-title">海外M&A戦略</div><div class="lesson-meta"><span>⏱ 12分</span><span>日本生保の海外展開</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/i7-ifrs17.html"><div class="lesson-num intermediate">7</div><div class="lesson-info"><div class="lesson-title">IFRS17の基礎</div><div class="lesson-meta"><span>⏱ 14分</span><span>CSM・BBA・PAA</span></div></div><div class="lesson-arrow">›</div></a>
+  </div>
+
+  <!-- ===== ADVANCED TAB ===== -->
+  <div class="section" id="advanced">
+    <div class="section-header"><div class="section-icon bg-advanced">📕</div><div class="section-label">上級編 — 分析・戦略</div></div>
+    <a class="lesson-card" href="pages/a1-valuation-model.html"><div class="lesson-num advanced">1</div><div class="lesson-info"><div class="lesson-title">バリュエーション・モデル構築</div><div class="lesson-meta"><span>⏱ 20分</span><span>APEV・P/EV・新契約倍率</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/a2-investment-thesis.html"><div class="lesson-num advanced">2</div><div class="lesson-info"><div class="lesson-title">投資テーマとテーゼ構築</div><div class="lesson-meta"><span>⏱ 18分</span><span>金利・為替・規制シナリオ</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/a3-alm-deep.html"><div class="lesson-num advanced">3</div><div class="lesson-info"><div class="lesson-title">ALM深掘り</div><div class="lesson-meta"><span>⏱ 18分</span><span>資産・負債ミスマッチ戦略</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/a4-peer-comparison.html"><div class="lesson-num advanced">4</div><div class="lesson-info"><div class="lesson-title">ピアコンパリソン</div><div class="lesson-meta"><span>⏱ 16分</span><span>上場4社の徹底比較</span></div></div><div class="lesson-arrow">›</div></a>
+    <a class="lesson-card" href="pages/a5-ir-earnings.html"><div class="lesson-num advanced">5</div><div class="lesson-info"><div class="lesson-title">IR・決算分析実践</div><div class="lesson-meta"><span>⏱ 16分</span><span>決算短信の読み方・質問設計</span></div></div><div class="lesson-arrow">›</div></a>
+  </div>
+
+  <div class="footer">Academy — Life Insurance Edition<br>Built for world-class analysts</div>
+</div>
+
+<script>
+// Tab switching
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+    // Re-trigger animations
+    document.getElementById(tab.dataset.tab).querySelectorAll('.lesson-card,.mindmap-card').forEach((c,i)=>{
+      c.style.animation='none';c.offsetHeight;
+      c.style.animation=`fadeUp 0.35s ease ${i*0.04}s both`;
+    });
+  });
+});
+</script>
+</body>
+</html>

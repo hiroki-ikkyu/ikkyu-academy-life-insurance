@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>グローバル比較 — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.level-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:700;color:#fff;margin-bottom:10px}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px;line-height:1.3}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)}
+.card p{font-size:12.5px;color:var(--sub);line-height:1.75}
+.card ul,.card ol{padding-left:18px;margin:8px 0}
+.card li{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:4px}
+.card li strong{color:var(--text)}
+.formula{background:#f0f0f2;border-radius:10px;padding:14px;margin:12px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;line-height:1.6}
+.highlight{border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.highlight p{color:var(--text)!important;font-weight:500;font-size:12.5px;line-height:1.75}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700}
+.stat-label{font-size:10px;color:var(--sub);margin-top:2px}
+.table-wrap{overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:300px}
+th{background:var(--accent);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f2}
+tr:nth-child(even) td{background:#fafafa}
+.quiz{background:var(--card);border:2px solid #e5e5e7;border-radius:var(--radius);padding:18px;margin:14px 0}
+.quiz h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-option{display:block;width:100%;padding:10px 14px;margin:6px 0;background:var(--bg);border:1.5px solid transparent;border-radius:10px;font-size:12px;font-family:inherit;cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-option:hover{border-color:#ccc}
+.quiz-option.correct{background:#34c75920;border-color:#34c759}
+.quiz-option.wrong{background:#ff453a15;border-color:#ff453a}
+.quiz-feedback{font-size:12px;color:var(--sub);margin-top:8px;display:none;line-height:1.6}
+.nav-bottom{display:flex;gap:10px;margin-top:30px}
+.nav-btn{flex:1;padding:14px;border-radius:12px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s}
+.nav-btn.prev{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.nav-btn.next{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.quiz{animation:fadeUp 0.4s ease both}
+
+.level-badge{background:#34c759}
+.stat-val{color:#34c759}
+.highlight{background:#34c75912;border-left:3px solid #34c759}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="level-badge">入門編 #8</div>
+<div class="page-title">グローバル比較</div>
+<div class="page-sub">日米欧の生保市場——規制・商品・収益構造のグローバル比較で日本市場を相対化する</div>
+
+<div class="card">
+  <h3>🌍 世界の生保市場規模</h3>
+  <div class="grid-2">
+    <div class="stat-box"><div class="stat-val">$2.9T</div><div class="stat-label">世界の生保保険料（年間）</div></div>
+    <div class="stat-box"><div class="stat-val">#2</div><div class="stat-label">日本は世界第2位</div></div>
+  </div>
+  <div class="table-wrap"><table>
+    <tr><th>国/地域</th><th>保険料シェア</th><th>特徴</th></tr>
+    <tr><td>🇺🇸 米国</td><td>~28%</td><td>変額保険・年金が主力。401k/IRAとの棲み分け</td></tr>
+    <tr><td>🇯🇵 日本</td><td>~12%</td><td>世帯加入率88%。相互会社文化。第三分野シフト</td></tr>
+    <tr><td>🇬🇧 英国</td><td>~10%</td><td>年金改革で個人年金が成長。Lloyd's/With-Profits</td></tr>
+    <tr><td>🇨🇳 中国</td><td>~10%</td><td>急成長。中国平安が世界最大級。規制強化中</td></tr>
+    <tr><td>🇫🇷 フランス</td><td>~6%</td><td>ユーロファンド（元本保証型）が主力</td></tr>
+  </table></div>
+</div>
+
+<div class="card">
+  <h3>📊 日米欧の構造比較</h3>
+  <div class="table-wrap"><table>
+    <tr><th>項目</th><th>🇯🇵 日本</th><th>🇺🇸 米国</th><th>🇪🇺 欧州</th></tr>
+    <tr><td>会社形態</td><td>相互会社が主流</td><td>株式会社が主流</td><td>混在</td></tr>
+    <tr><td>主力商品</td><td>死亡保障+医療</td><td>変額年金+ユニバーサル</td><td>貯蓄型+年金</td></tr>
+    <tr><td>販売チャネル</td><td>営業職員中心</td><td>独立代理店中心</td><td>銀行窓販が強い</td></tr>
+    <tr><td>規制体系</td><td>金融庁/ESR導入中</td><td>州規制/RBC</td><td>Solvency II</td></tr>
+    <tr><td>会計基準</td><td>日本GAAP→IFRS検討</td><td>US GAAP/LDTI</td><td>IFRS 17</td></tr>
+    <tr><td>EV開示</td><td>任意（大手は開示）</td><td>限定的</td><td>広く普及</td></tr>
+  </table></div>
+</div>
+
+<div class="card">
+  <h3>🔗 日本生保の海外展開</h3>
+  <p>国内市場の成熟化を背景に、日本の大手生保は積極的に海外M&Aを推進。</p>
+  <ul>
+    <li><strong>第一生命</strong>：Protective（米国）、TAL（豪州）、Dai-ichi Vietnam</li>
+    <li><strong>日本生命</strong>：MassMutual（米国、持分法適用）、MLC（豪州）</li>
+    <li><strong>住友生命</strong>：Symetra（米国）、BNI Life（インドネシア）</li>
+    <li><strong>明治安田</strong>：StanCorp（米国）、Thai Life</li>
+  </ul>
+  <div class="highlight"><p>💎 海外事業比率は第一生命で30%超、日本生命で15-20%。海外子会社の収益性と為替影響がグループ全体のEVに大きく影響するため、サム・オブ・パーツ分析が不可欠。</p></div>
+</div>
+
+<div class="quiz">
+  <h4>🧪 確認クイズ</h4>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:10px">欧州の保険会社に適用されるソルベンシー規制はどれか？</p>
+  <button class="quiz-option" data-correct="false">ESR</button>
+  <button class="quiz-option" data-correct="false">RBC</button>
+  <button class="quiz-option" data-correct="true">Solvency II</button>
+  <button class="quiz-option" data-correct="false">Basel III</button>
+  <div class="quiz-feedback">✅ Solvency IIは2016年から適用されている欧州の保険規制。経済価値ベースで資産・負債を評価する点で、日本のESR規制の参考モデルとなっている。RBCは米国、Basel IIIは銀行規制。</div>
+</div>
+
+<div class="nav-bottom">
+  <a class="nav-btn prev" href="b7-distribution.html">← 前へ</a>
+  <a class="nav-btn next" href="i1-general-account.html">次へ: 一般勘定の資産運用 →</a>
+</div>
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance</div>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.quiz-option');const fb=q.querySelector('.quiz-feedback');opts.forEach(o=>{o.addEventListener('click',()=>{if(q.dataset.answered)return;q.dataset.answered='true';opts.forEach(x=>x.style.pointerEvents='none');if(o.dataset.correct==='true'){o.classList.add('correct')}else{o.classList.add('wrong');opts.forEach(x=>{if(x.dataset.correct==='true')x.classList.add('correct')})}if(fb)fb.style.display='block'})})});
+</script>
+</body>
+</html>

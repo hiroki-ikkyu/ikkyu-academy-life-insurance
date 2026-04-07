@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>業界構造と主要プレーヤー — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.level-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:700;color:#fff;margin-bottom:10px}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px;line-height:1.3}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)}
+.card p{font-size:12.5px;color:var(--sub);line-height:1.75}
+.card ul,.card ol{padding-left:18px;margin:8px 0}
+.card li{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:4px}
+.card li strong{color:var(--text)}
+.formula{background:#f0f0f2;border-radius:10px;padding:14px;margin:12px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;line-height:1.6}
+.highlight{border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.highlight p{color:var(--text)!important;font-weight:500;font-size:12.5px;line-height:1.75}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700}
+.stat-label{font-size:10px;color:var(--sub);margin-top:2px}
+.table-wrap{overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:300px}
+th{background:var(--accent);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f2}
+tr:nth-child(even) td{background:#fafafa}
+.quiz{background:var(--card);border:2px solid #e5e5e7;border-radius:var(--radius);padding:18px;margin:14px 0}
+.quiz h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-option{display:block;width:100%;padding:10px 14px;margin:6px 0;background:var(--bg);border:1.5px solid transparent;border-radius:10px;font-size:12px;font-family:inherit;cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-option:hover{border-color:#ccc}
+.quiz-option.correct{background:#34c75920;border-color:#34c759}
+.quiz-option.wrong{background:#ff453a15;border-color:#ff453a}
+.quiz-feedback{font-size:12px;color:var(--sub);margin-top:8px;display:none;line-height:1.6}
+.nav-bottom{display:flex;gap:10px;margin-top:30px}
+.nav-btn{flex:1;padding:14px;border-radius:12px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s}
+.nav-btn.prev{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.nav-btn.next{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.quiz{animation:fadeUp 0.4s ease both}
+
+.level-badge{background:#34c759}
+.stat-val{color:#34c759}
+.highlight{background:#34c75912;border-left:3px solid #34c759}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="level-badge">入門編 #3</div>
+<div class="page-title">業界構造と主要プレーヤー</div>
+<div class="page-sub">相互会社 vs 株式会社、国内大手 vs 外資系——日本の生保業界の勢力図を把握する</div>
+
+<div class="card">
+  <h3>🏢 相互会社 vs 株式会社</h3>
+  <p>日本の生保業界の最大の特徴は「相互会社」の存在。世界的にも珍しい会社形態。</p>
+  <h4>相互会社（Mutual Company）</h4>
+  <ul>
+    <li>契約者＝社員（株主に相当）。株式を発行しない</li>
+    <li>剰余金は契約者配当として還元</li>
+    <li>市場の短期的なプレッシャーを受けにくい反面、資本調達に制約</li>
+    <li>代表例：日本生命、明治安田生命、住友生命、富国生命</li>
+  </ul>
+  <h4>株式会社（Stock Company）</h4>
+  <ul>
+    <li>株式市場で取引。資本調達が容易</li>
+    <li>株主利益と契約者利益のバランスが課題</li>
+    <li>代表例：第一生命HD、T&D HD、かんぽ生命、ソニー生命（SFG傘下）</li>
+  </ul>
+  <div class="highlight"><p>💎 アナリストとして投資可能なのは株式会社のみ。しかし相互会社（日本生命・明治安田等）の動向も市場全体に影響するため、EV開示等を通じてウォッチすることが重要。</p></div>
+</div>
+
+<div class="card">
+  <h3>📊 主要プレーヤー一覧</h3>
+  <div class="table-wrap"><table>
+    <tr><th>会社名</th><th>形態</th><th>総資産（兆円）</th><th>特徴</th></tr>
+    <tr><td>日本生命</td><td>相互会社</td><td>~86</td><td>業界最大手。国内保険料収入トップ</td></tr>
+    <tr><td>第一生命HD</td><td>株式会社</td><td>~60</td><td>2010年株式化。海外展開積極（プロテクティブ等）</td></tr>
+    <tr><td>明治安田生命</td><td>相互会社</td><td>~45</td><td>2025年株式化検討中。スタンコープ買収</td></tr>
+    <tr><td>住友生命</td><td>相互会社</td><td>~38</td><td>シメトラ買収で米国進出</td></tr>
+    <tr><td>かんぽ生命</td><td>株式会社</td><td>~60</td><td>全国郵便局ネットワーク。不適切販売で改革中</td></tr>
+    <tr><td>T&D HD</td><td>株式会社</td><td>~18</td><td>太陽・大同・T&Dフィナンシャルの3社体制</td></tr>
+    <tr><td>アフラック</td><td>外資系</td><td>~12</td><td>がん保険のパイオニア。日本郵政と提携</td></tr>
+    <tr><td>ソニー生命</td><td>SFG傘下</td><td>~10</td><td>ライフプランナー営業。変額保険に強み</td></tr>
+  </table></div>
+</div>
+
+<div class="card">
+  <h3>🌏 業界再編の歴史</h3>
+  <ul>
+    <li><strong>1997-2001年</strong>：生保危機。日産生命・東邦生命等7社が経営破綻。逆ざや問題が深刻化</li>
+    <li><strong>2004年</strong>：明治生命と安田生命が合併→明治安田生命</li>
+    <li><strong>2010年</strong>：第一生命が相互会社から株式会社化。東証上場</li>
+    <li><strong>2015-2020年</strong>：日本生命がマスミューチュアルを買収、第一生命がプロテクティブを買収。海外M&Aの時代</li>
+    <li><strong>2025年〜</strong>：明治安田生命の株式化、経済価値ベースのESR規制導入</li>
+  </ul>
+</div>
+
+<div class="quiz">
+  <h4>🧪 確認クイズ</h4>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:10px">以下のうち、相互会社形態の生命保険会社はどれか？</p>
+  <button class="quiz-option" data-correct="false">第一生命HD</button>
+  <button class="quiz-option" data-correct="true">住友生命</button>
+  <button class="quiz-option" data-correct="false">かんぽ生命</button>
+  <button class="quiz-option" data-correct="false">T&D HD</button>
+  <div class="quiz-feedback">✅ 住友生命は相互会社。第一生命は2010年に株式化、かんぽ生命とT&D HDは元から株式会社形態。日本生命・明治安田生命・富国生命も相互会社。</div>
+</div>
+
+<div class="nav-bottom">
+  <a class="nav-btn prev" href="b2-product-types.html">← 前へ</a>
+  <a class="nav-btn next" href="b4-regulation.html">次へ: 規制・監督 →</a>
+</div>
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance</div>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.quiz-option');const fb=q.querySelector('.quiz-feedback');opts.forEach(o=>{o.addEventListener('click',()=>{if(q.dataset.answered)return;q.dataset.answered='true';opts.forEach(x=>x.style.pointerEvents='none');if(o.dataset.correct==='true'){o.classList.add('correct')}else{o.classList.add('wrong');opts.forEach(x=>{if(x.dataset.correct==='true')x.classList.add('correct')})}if(fb)fb.style.display='block'})})});
+</script>
+</body>
+</html>

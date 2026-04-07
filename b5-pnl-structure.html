@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>生保の損益構造 — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.level-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:700;color:#fff;margin-bottom:10px}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px;line-height:1.3}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)}
+.card p{font-size:12.5px;color:var(--sub);line-height:1.75}
+.card ul,.card ol{padding-left:18px;margin:8px 0}
+.card li{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:4px}
+.card li strong{color:var(--text)}
+.formula{background:#f0f0f2;border-radius:10px;padding:14px;margin:12px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;line-height:1.6}
+.highlight{border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.highlight p{color:var(--text)!important;font-weight:500;font-size:12.5px;line-height:1.75}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700}
+.stat-label{font-size:10px;color:var(--sub);margin-top:2px}
+.table-wrap{overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:300px}
+th{background:var(--accent);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f2}
+tr:nth-child(even) td{background:#fafafa}
+.quiz{background:var(--card);border:2px solid #e5e5e7;border-radius:var(--radius);padding:18px;margin:14px 0}
+.quiz h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-option{display:block;width:100%;padding:10px 14px;margin:6px 0;background:var(--bg);border:1.5px solid transparent;border-radius:10px;font-size:12px;font-family:inherit;cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-option:hover{border-color:#ccc}
+.quiz-option.correct{background:#34c75920;border-color:#34c759}
+.quiz-option.wrong{background:#ff453a15;border-color:#ff453a}
+.quiz-feedback{font-size:12px;color:var(--sub);margin-top:8px;display:none;line-height:1.6}
+.nav-bottom{display:flex;gap:10px;margin-top:30px}
+.nav-btn{flex:1;padding:14px;border-radius:12px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s}
+.nav-btn.prev{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.nav-btn.next{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.quiz{animation:fadeUp 0.4s ease both}
+
+.level-badge{background:#34c759}
+.stat-val{color:#34c759}
+.highlight{background:#34c75912;border-left:3px solid #34c759}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="level-badge">入門編 #5</div>
+<div class="page-title">生保の損益構造</div>
+<div class="page-sub">基礎利益・三利源・経常利益——生保独自の損益計算書の読み方</div>
+
+<div class="card">
+  <h3>📊 生保のP/L構造</h3>
+  <p>生保の損益計算書は一般事業会社とは構造が全く異なる。最も重要な指標は「基礎利益」。</p>
+  <div class="formula">経常収益 = 保険料等収入 + 資産運用収益 + その他経常収益</div>
+  <div class="formula">経常費用 = 保険金等支払金 + 責任準備金繰入 + 資産運用費用 + 事業費 + その他</div>
+  <div class="formula">経常利益 = 経常収益 − 経常費用</div>
+</div>
+
+<div class="card">
+  <h3>🔑 基礎利益と三利源</h3>
+  <p>基礎利益は生保版の「本業利益」。経常利益からキャピタル損益と臨時損益を除いたもの。</p>
+  <div class="formula">基礎利益 = 死差益 + 利差益（損）+ 費差益</div>
+  <h4>① 死差益</h4>
+  <p>予定死亡率で計算された保険金支払見込額と、実際の支払額の差。日本では長寿化の恩恵で構造的にプラス。大手で年間数千億円規模。</p>
+  <h4>② 利差益（損）</h4>
+  <p>予定利率と実際の運用利回りの差。かつての高予定利率契約（バブル期に5.5%を約束）が残る限り逆ざやリスクあり。ただし近年は低予定利率の新契約増加と金利上昇で改善傾向。</p>
+  <h4>③ 費差益</h4>
+  <p>予定事業費と実際の事業費の差。デジタル化・効率化で改善傾向。ただし営業職員の人件費が大きい。</p>
+  <div class="grid-2">
+    <div class="stat-box"><div class="stat-val">60-70%</div><div class="stat-label">死差益の構成比</div></div>
+    <div class="stat-box"><div class="stat-val">15-25%</div><div class="stat-label">費差益の構成比</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>📈 経常利益への道</h3>
+  <div class="formula">経常利益 = 基礎利益 ± キャピタル損益 ± 臨時損益</div>
+  <ul>
+    <li><strong>キャピタル損益</strong>：有価証券売却損益・評価損益。株式市場や為替に左右されるため変動大</li>
+    <li><strong>臨時損益</strong>：危険準備金繰入・追加責任準備金繰入など。保守的な繰入で利益を圧縮することも</li>
+  </ul>
+  <div class="highlight"><p>💎 アナリストは「基礎利益」を最重視する。キャピタル損益は市場環境次第で大きく振れるため、本業の収益力を見るには基礎利益が最適。さらに三利源に分解して各要素のトレンドを追う。</p></div>
+</div>
+
+<div class="quiz">
+  <h4>🧪 確認クイズ</h4>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:10px">「逆ざや」とは何を指すか？</p>
+  <button class="quiz-option" data-correct="false">実際の死亡率が予定死亡率を上回ること</button>
+  <button class="quiz-option" data-correct="true">実際の運用利回りが予定利率を下回ること</button>
+  <button class="quiz-option" data-correct="false">実際の事業費が予定事業費を上回ること</button>
+  <button class="quiz-option" data-correct="false">保険金支払額が保険料収入を上回ること</button>
+  <div class="quiz-feedback">✅ 逆ざやは利差損を指す。特にバブル期の高予定利率（5.5%等）の契約を保有する生保では、低金利環境下で深刻な問題だった。1997-2001年の生保破綻の主因。</div>
+</div>
+
+<div class="nav-bottom">
+  <a class="nav-btn prev" href="b4-regulation.html">← 前へ</a>
+  <a class="nav-btn next" href="b6-balance-sheet.html">次へ: バランスシート →</a>
+</div>
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance</div>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.quiz-option');const fb=q.querySelector('.quiz-feedback');opts.forEach(o=>{o.addEventListener('click',()=>{if(q.dataset.answered)return;q.dataset.answered='true';opts.forEach(x=>x.style.pointerEvents='none');if(o.dataset.correct==='true'){o.classList.add('correct')}else{o.classList.add('wrong');opts.forEach(x=>{if(x.dataset.correct==='true')x.classList.add('correct')})}if(fb)fb.style.display='block'})})});
+</script>
+</body>
+</html>

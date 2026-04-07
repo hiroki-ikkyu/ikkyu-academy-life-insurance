@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>生保分析フレームワーク — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.page-title{font-size:22px;font-weight:700;margin-bottom:6px;letter-spacing:-0.5px}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.map-container{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.fw-section{margin-bottom:20px}
+.fw-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.fw-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.fw-title{font-size:15px;font-weight:700}
+.fw-card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);margin-bottom:10px}
+.fw-card h4{font-size:13px;font-weight:700;margin-bottom:6px}
+.fw-card p,.fw-card li{font-size:12px;color:var(--sub);line-height:1.7}
+.fw-card ul{padding-left:16px;margin-top:6px}
+.fw-card li{margin-bottom:3px}
+.formula-box{background:#f0f0f2;border-radius:10px;padding:14px;margin:10px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;letter-spacing:0.3px}
+.tag{display:inline-block;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:600;margin-right:4px;margin-bottom:4px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.fw-section{animation:fadeUp 0.4s ease both}
+.fw-section:nth-child(n+2){animation-delay:calc(0.05s * var(--i,0))}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="page-title">📊 生保分析フレームワーク</div>
+<div class="page-sub">EV分析・ALM・ESR・三利源——生保アナリストが使う分析軸を体系的にマッピング</div>
+
+<div class="map-container">
+<svg viewBox="0 0 680 460" xmlns="http://www.w3.org/2000/svg" style="min-width:580px">
+  <!-- Center -->
+  <rect x="250" y="195" width="180" height="60" rx="14" fill="#2c2c2e"/>
+  <text x="340" y="221" text-anchor="middle" fill="#fff" font-family="DM Sans,sans-serif" font-size="13" font-weight="700">生保分析</text>
+  <text x="340" y="239" text-anchor="middle" fill="#86868b" font-family="DM Sans,sans-serif" font-size="10">Analytical Framework</text>
+
+  <!-- 1: EV Analysis (top) -->
+  <line x1="340" y1="195" x2="340" y2="80" stroke="#0071e3" stroke-width="2" opacity="0.5"/>
+  <rect x="255" y="40" width="170" height="45" rx="12" fill="#0071e3" fill-opacity="0.12" stroke="#0071e3" stroke-width="1.5"/>
+  <text x="340" y="62" text-anchor="middle" fill="#0071e3" font-family="DM Sans,sans-serif" font-size="12" font-weight="700">💎 EV分析</text>
+  <text x="340" y="76" text-anchor="middle" fill="#86868b" font-family="DM Sans,sans-serif" font-size="9">Embedded Value</text>
+
+  <!-- 2: ALM (top-left) -->
+  <line x1="270" y1="200" x2="100" y2="80" stroke="#34c759" stroke-width="2" opacity="0.5"/>
+  <rect x="20" y="50" width="160" height="45" rx="12" fill="#34c759" fill-opacity="0.12" stroke="#34c759" stroke-width="1.5"/>
+  <text x="100" y="72" text-anchor="middle" fill="#34c759" font-family="DM Sans,sans-serif" font-size="12" font-weight="700">⚖️ ALM</text>
+  <text x="100" y="86" text-anchor="middle" fill="#86868b" font-family="DM Sans,sans-serif" font-size="9">Asset Liability Mgmt</text>
+
+  <!-- 3: Three Sources (top-right) -->
+  <line x1="410" y1="200" x2="560" y2="80" stroke="#ff9f0a" stroke-width="2" opacity="0.5"/>
+  <rect x="480" y="50" width="170" height="45" rx="12" fill="#ff9f0a" fill-opacity="0.12" stroke="#ff9f0a" stroke-width="1.5"/>
+  <text x="565" y="72" text-anchor="middle" fill="#ff9f0a" font-family="DM Sans,sans-serif" font-size="12" font-weight="700">🔑 三利源</text>
+  <text x="565" y="86" text-anchor="middle" fill="#86868b" font-family="DM Sans,sans-serif" font-size="9">Three Profit Sources</text>
+
+  <!-- 4: ESR (bottom-left) -->
+  <line x1="270" y1="250" x2="100" y2="370" stroke="#bf5af2" stroke-width="2" opacity="0.5"/>
+  <rect x="20" y="350" width="160" height="45" rx="12" fill="#bf5af2" fill-opacity="0.12" stroke="#bf5af2" stroke-width="1.5"/>
+  <text x="100" y="372" text-anchor="middle" fill="#bf5af2" font-family="DM Sans,sans-serif" font-size="12" font-weight="700">🛡️ ESR規制</text>
+  <text x="100" y="386" text-anchor="middle" fill="#86868b" font-family="DM Sans,sans-serif" font-size="9">Solvency Regulation</text>
+
+  <!-- 5: New Business (bottom) -->
+  <line x1="340" y1="255" x2="340" y2="370" stroke="#ff453a" stroke-width="2" opacity="0.5"/>
+  <rect x="260" y="365" width="160" height="45" rx="12" fill="#ff453a" fill-opacity="0.12" stroke="#ff453a" stroke-width="1.5"/>
+  <text x="340" y="387" text-anchor="middle" fill="#ff453a" font-family="DM Sans,sans-serif" font-size="12" font-weight="700">📝 新契約分析</text>
+  <text x="340" y="401" text-anchor="middle" fill="#86868b" font-family="DM Sans,sans-serif" font-size="9">New Business Value</text>
+
+  <!-- 6: Valuation (bottom-right) -->
+  <line x1="410" y1="250" x2="560" y2="370" stroke="#5ac8fa" stroke-width="2" opacity="0.5"/>
+  <rect x="480" y="350" width="170" height="45" rx="12" fill="#5ac8fa" fill-opacity="0.12" stroke="#5ac8fa" stroke-width="1.5"/>
+  <text x="565" y="372" text-anchor="middle" fill="#0071e3" font-family="DM Sans,sans-serif" font-size="12" font-weight="700">📐 バリュエーション</text>
+  <text x="565" y="386" text-anchor="middle" fill="#86868b" font-family="DM Sans,sans-serif" font-size="9">P/EV, APEV, Multiples</text>
+</svg>
+</div>
+
+<!-- Framework Details -->
+<div class="fw-section" style="--i:1">
+  <div class="fw-header"><div class="fw-dot" style="background:#0071e3"></div><div class="fw-title">EV（エンベディッドバリュー）分析</div></div>
+  <div class="fw-card">
+    <h4>生保の「真の価値」を測る</h4>
+    <div class="formula-box">EV = 修正純資産(ANW) + 保有契約価値(VIF)</div>
+    <p>通常の会計利益では保険契約の長期的価値が見えない。EVは将来キャッシュフローの現在価値を含めた包括的な企業価値指標。</p>
+    <ul>
+      <li><strong>修正純資産(ANW)</strong>：純資産＋有価証券含み損益＋負債の含み損益等</li>
+      <li><strong>保有契約価値(VIF)</strong>：既存契約の将来利益PV。金利・死亡率前提で大きく変動</li>
+      <li><strong>MCEV</strong>：EEV原則に準拠した市場整合的EV。フリクショナルコスト・CRNHR含む</li>
+    </ul>
+  </div>
+</div>
+
+<div class="fw-section" style="--i:2">
+  <div class="fw-header"><div class="fw-dot" style="background:#34c759"></div><div class="fw-title">ALM（資産負債管理）</div></div>
+  <div class="fw-card">
+    <h4>生保経営の心臓部</h4>
+    <p>保険契約（負債）のキャッシュフローと運用資産のキャッシュフローをマッチングさせる管理手法。</p>
+    <ul>
+      <li><strong>デュレーション・ギャップ</strong>：負債デュレーション（20-30年）vs 資産デュレーション（10-15年）</li>
+      <li><strong>金利リスク</strong>：金利上昇→資産の時価下落、しかし負債も減少（ネットで利益のことが多い）</li>
+      <li><strong>超長期債の役割</strong>：30年・40年国債でギャップを縮小</li>
+      <li><strong>為替ヘッジ</strong>：外債投資の為替リスクをどこまでヘッジするか</li>
+    </ul>
+  </div>
+</div>
+
+<div class="fw-section" style="--i:3">
+  <div class="fw-header"><div class="fw-dot" style="background:#ff9f0a"></div><div class="fw-title">三利源（Three Profit Sources）</div></div>
+  <div class="fw-card">
+    <h4>生保利益の三本柱</h4>
+    <div class="formula-box">基礎利益 = 死差益 + 利差益 + 費差益</div>
+    <ul>
+      <li><strong>死差益</strong>：予定死亡率 &gt; 実際死亡率 → 死差益。日本では長寿化で構造的にプラス</li>
+      <li><strong>利差益（損）</strong>：運用利回り vs 予定利率。低金利時代は逆ざや（利差損）が問題だった</li>
+      <li><strong>費差益</strong>：予定事業費率 &gt; 実際の事業費率 → 費差益。効率化で改善傾向</li>
+    </ul>
+    <p style="margin-top:8px"><span class="tag" style="background:#ff9f0a;color:#fff">KEY</span> 基礎利益は生保版の「営業利益」。ここから臨時損益（有価証券売却損益等）を加減して経常利益へ。</p>
+  </div>
+</div>
+
+<div class="fw-section" style="--i:4">
+  <div class="fw-header"><div class="fw-dot" style="background:#bf5af2"></div><div class="fw-title">ESR・ソルベンシー規制</div></div>
+  <div class="fw-card">
+    <h4>2025年度〜新規制スタート</h4>
+    <div class="formula-box">ESR = 適格資本(Own Funds) ÷ 所要資本(SCR)</div>
+    <p>資産・負債をすべて経済価値（時価）で評価し、ストレスシナリオ下でも支払能力があるかを検証。</p>
+    <ul>
+      <li><strong>従来のSMR</strong>：簿価ベース。200%以上で「健全」</li>
+      <li><strong>新ESR</strong>：時価ベース。100%以上が必要、150-200%が一般的なターゲット</li>
+      <li><strong>金利感応度</strong>：金利1%上昇→負債の時価が大きく減少→ESR改善</li>
+      <li><strong>株式リスク</strong>：政策保有株の多い会社はESR毀損リスク大</li>
+    </ul>
+  </div>
+</div>
+
+<div class="fw-section" style="--i:5">
+  <div class="fw-header"><div class="fw-dot" style="background:#ff453a"></div><div class="fw-title">新契約分析</div></div>
+  <div class="fw-card">
+    <h4>成長性を測る鍵</h4>
+    <div class="formula-box">新契約価値 = 新契約の将来利益PV<br>新契約マージン = 新契約価値 ÷ 保険料PV</div>
+    <ul>
+      <li><strong>新契約年換算保険料(ANP)</strong>：年間ベースでの新契約規模</li>
+      <li><strong>新契約価値</strong>：その年に獲得した契約の生涯価値</li>
+      <li><strong>マージン</strong>：8-12%が日系大手の典型。保障性商品は高マージン</li>
+      <li><strong>第三分野比率</strong>：医療・がん保険の比率が高いほどマージン改善</li>
+    </ul>
+  </div>
+</div>
+
+<div class="fw-section" style="--i:6">
+  <div class="fw-header"><div class="fw-dot" style="background:#5ac8fa"></div><div class="fw-title">バリュエーション手法</div></div>
+  <div class="fw-card">
+    <h4>生保株の適正価格をどう測るか</h4>
+    <ul>
+      <li><strong>P/EV倍率</strong>：時価総額÷EV。0.5x以下は割安と見る向きが多い</li>
+      <li><strong>APEV法</strong>：EV + 新契約価値×成長倍率。成長性を加味</li>
+      <li><strong>P/EV + 新契約倍率</strong>：新契約価値に何倍のマルチプルを置くか</li>
+      <li><strong>DDM</strong>：配当割引モデル。還元強化トレンドで注目度上昇</li>
+      <li><strong>Sum-of-Parts</strong>：国内生保＋海外子会社を分離評価</li>
+    </ul>
+    <p style="margin-top:8px"><span class="tag" style="background:#5ac8fa;color:#fff">注意</span> 相互会社は非上場のためEV開示が主な情報源。株式会社4社（T&D, 第一生命, かんぽ, SOMPOひまわり）のみ株式市場で取引。</p>
+  </div>
+</div>
+
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Analysis Framework Map</div>
+</div>
+</body>
+</html>

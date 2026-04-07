@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>バリュエーション・モデル構築 — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.level-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:700;color:#fff;margin-bottom:10px}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px;line-height:1.3}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)}
+.card p{font-size:12.5px;color:var(--sub);line-height:1.75}
+.card ul,.card ol{padding-left:18px;margin:8px 0}
+.card li{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:4px}
+.card li strong{color:var(--text)}
+.formula{background:#f0f0f2;border-radius:10px;padding:14px;margin:12px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;line-height:1.6}
+.highlight{border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.highlight p{color:var(--text)!important;font-weight:500;font-size:12.5px;line-height:1.75}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700}
+.stat-label{font-size:10px;color:var(--sub);margin-top:2px}
+.table-wrap{overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:300px}
+th{background:var(--accent);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f2}
+tr:nth-child(even) td{background:#fafafa}
+.quiz{background:var(--card);border:2px solid #e5e5e7;border-radius:var(--radius);padding:18px;margin:14px 0}
+.quiz h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-option{display:block;width:100%;padding:10px 14px;margin:6px 0;background:var(--bg);border:1.5px solid transparent;border-radius:10px;font-size:12px;font-family:inherit;cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-option:hover{border-color:#ccc}
+.quiz-option.correct{background:#34c75920;border-color:#34c759}
+.quiz-option.wrong{background:#ff453a15;border-color:#ff453a}
+.quiz-feedback{font-size:12px;color:var(--sub);margin-top:8px;display:none;line-height:1.6}
+.nav-bottom{display:flex;gap:10px;margin-top:30px}
+.nav-btn{flex:1;padding:14px;border-radius:12px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s}
+.nav-btn.prev{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.nav-btn.next{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.quiz{animation:fadeUp 0.4s ease both}
+
+.level-badge{background:#ff453a}
+.stat-val{color:#ff453a}
+.highlight{background:#ff453a12;border-left:3px solid #ff453a}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="level-badge">上級編 #1</div>
+<div class="page-title">バリュエーション・モデル構築</div>
+<div class="page-sub">APEV・P/EV・新契約倍率・DDM・SoP——生保株の適正価格を算出する</div>
+
+<div class="card">
+  <h3>📐 生保バリュエーションの基本フレームワーク</h3>
+  <p>生保はPERだけでは評価できない。帳簿上の利益と経済的な企業価値の乖離が大きいため、EV/MCEVベースのバリュエーションが不可欠。</p>
+  <h4>主要手法の一覧</h4>
+  <ul>
+    <li><strong>P/EV倍率</strong>：最も基本。時価総額 ÷ EV</li>
+    <li><strong>APEV法</strong>：EV + 新契約価値 × 成長倍率（マルチプル）</li>
+    <li><strong>P/EV + VNB Multiple</strong>：分離的にEVストックと成長（VNB）を評価</li>
+    <li><strong>DDM（配当割引モデル）</strong>：配当の持続性とペイアウト率で評価</li>
+    <li><strong>Sum-of-Parts</strong>：国内＋海外事業を分離評価</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>💎 P/EV倍率の実務</h3>
+  <div class="formula">P/EV = 時価総額 ÷ EV</div>
+  <h4>P/EVの読み方</h4>
+  <ul>
+    <li><strong>&lt; 0.5x</strong>：市場がEVの信頼性を疑っている or 深刻な構造問題</li>
+    <li><strong>0.5-0.8x</strong>：日系生保の典型レンジ。割安に見えるが「EVディスカウント」が常態化</li>
+    <li><strong>0.8-1.0x</strong>：適正～やや割高。EVの質が高い（高マージン新契約、安定的VIF）</li>
+    <li><strong>&gt; 1.0x</strong>：強い成長期待 or 海外事業の高評価</li>
+  </ul>
+  <h4>なぜ日本生保はP/EV 1.0x未満なのか？</h4>
+  <ul>
+    <li>新契約のマイナス成長懸念</li>
+    <li>金利前提への不信（低金利が長期化する可能性）</li>
+    <li>相互会社との競争による価格圧力</li>
+    <li>ESR規制導入の不確実性</li>
+    <li>資本効率の低さ（ROE &lt; CoE）</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>📊 APEV法の構築</h3>
+  <div class="formula">理論株価 = EV + VNB × Multiple<br>Multiple = (1 + g) / (RoEV − g)</div>
+  <p style="margin-top:8px;font-size:11px;color:var(--sub)">g: VNBの長期成長率、RoEV: EVに対する期待リターン</p>
+  <h4>実務上のステップ</h4>
+  <ol>
+    <li>最新のEVを取得（開示資料から）</li>
+    <li>VNBの正常化（一時的要因を除去）</li>
+    <li>長期成長率gの設定（0-3%が典型）</li>
+    <li>割引率RoEVの設定（8-12%。リスクフリー+エクイティリスクプレミアム）</li>
+    <li>マルチプルを計算→理論株価を算出</li>
+    <li>感応度テーブルを作成（g vs RoEVのマトリクス）</li>
+  </ol>
+</div>
+
+<div class="card">
+  <h3>🧮 Sum-of-Parts分析</h3>
+  <p>海外事業比率が高い会社（第一生命等）には不可欠。</p>
+  <div class="formula">理論株価 = 国内EV × P/EV_国内 + 海外EV × P/EV_海外 + 持ち株/余剰資本</div>
+  <ul>
+    <li><strong>国内事業</strong>：P/EV 0.4-0.7x（成長なし→ディスカウント）</li>
+    <li><strong>海外事業</strong>：P/EV 0.8-1.2x（成長プレミアム）</li>
+    <li><strong>グループ調整</strong>：持株会社コスト、余剰資本、のれん</li>
+  </ul>
+</div>
+
+<div class="quiz">
+  <h4>🧪 確認クイズ</h4>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:10px">APEV法で理論株価を計算する際、VNBの成長倍率（マルチプル）は何の関数か？</p>
+  <button class="quiz-option" data-correct="false">P/EV倍率と配当利回り</button>
+  <button class="quiz-option" data-correct="true">長期成長率(g)とEVに対する期待リターン(RoEV)</button>
+  <button class="quiz-option" data-correct="false">死差益率と利差益率</button>
+  <button class="quiz-option" data-correct="false">ANP成長率とマージン率</button>
+  <div class="quiz-feedback">✅ APEV法のマルチプル = (1+g) / (RoEV − g)。成長率が高く期待リターンが低いほどマルチプルは高くなる。永久成長モデル（ゴードンモデル）と同じ構造。</div>
+</div>
+
+<div class="nav-bottom">
+  <a class="nav-btn prev" href="i7-ifrs17.html">← 前へ</a>
+  <a class="nav-btn next" href="a2-investment-thesis.html">次へ: 投資テーゼ →</a>
+</div>
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance</div>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.quiz-option');const fb=q.querySelector('.quiz-feedback');opts.forEach(o=>{o.addEventListener('click',()=>{if(q.dataset.answered)return;q.dataset.answered='true';opts.forEach(x=>x.style.pointerEvents='none');if(o.dataset.correct==='true'){o.classList.add('correct')}else{o.classList.add('wrong');opts.forEach(x=>{if(x.dataset.correct==='true')x.classList.add('correct')})}if(fb)fb.style.display='block'})})});
+</script>
+</body>
+</html>

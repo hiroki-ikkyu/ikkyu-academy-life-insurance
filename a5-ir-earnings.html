@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>IR・決算分析実践 — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.level-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:700;color:#fff;margin-bottom:10px}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px;line-height:1.3}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)}
+.card p{font-size:12.5px;color:var(--sub);line-height:1.75}
+.card ul,.card ol{padding-left:18px;margin:8px 0}
+.card li{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:4px}
+.card li strong{color:var(--text)}
+.formula{background:#f0f0f2;border-radius:10px;padding:14px;margin:12px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;line-height:1.6}
+.highlight{border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.highlight p{color:var(--text)!important;font-weight:500;font-size:12.5px;line-height:1.75}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700}
+.stat-label{font-size:10px;color:var(--sub);margin-top:2px}
+.table-wrap{overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:300px}
+th{background:var(--accent);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f2}
+tr:nth-child(even) td{background:#fafafa}
+.quiz{background:var(--card);border:2px solid #e5e5e7;border-radius:var(--radius);padding:18px;margin:14px 0}
+.quiz h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-option{display:block;width:100%;padding:10px 14px;margin:6px 0;background:var(--bg);border:1.5px solid transparent;border-radius:10px;font-size:12px;font-family:inherit;cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-option:hover{border-color:#ccc}
+.quiz-option.correct{background:#34c75920;border-color:#34c759}
+.quiz-option.wrong{background:#ff453a15;border-color:#ff453a}
+.quiz-feedback{font-size:12px;color:var(--sub);margin-top:8px;display:none;line-height:1.6}
+.nav-bottom{display:flex;gap:10px;margin-top:30px}
+.nav-btn{flex:1;padding:14px;border-radius:12px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s}
+.nav-btn.prev{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.nav-btn.next{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.quiz{animation:fadeUp 0.4s ease both}
+
+.level-badge{background:#ff453a}
+.stat-val{color:#ff453a}
+.highlight{background:#ff453a12;border-left:3px solid #ff453a}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="level-badge">上級編 #5</div>
+<div class="page-title">IR・決算分析実践</div>
+<div class="page-sub">決算短信の読み方・EV開示の分析・IR質問設計——実務アナリストの腕の見せ所</div>
+
+<div class="card">
+  <h3>📋 決算開示のスケジュール</h3>
+  <p>生保の決算開示は複数段階で行われる。それぞれで確認すべきポイントが異なる。</p>
+  <ul>
+    <li><strong>決算短信（5月中旬）</strong>：速報値。保険料収入、基礎利益、経常利益、当期純利益</li>
+    <li><strong>EV開示（5月下旬〜6月）</strong>：EV/MCEV、新契約価値、感応度分析。最重要の開示</li>
+    <li><strong>ディスクロージャー誌（7月）</strong>：詳細な財務データ、リスク管理、資産運用</li>
+    <li><strong>有価証券報告書（6月）</strong>：法定開示。セグメント情報、関連当事者取引</li>
+    <li><strong>決算説明会</strong>：経営陣のプレゼン＋Q&A。アナリストの質問力が試される場</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>📊 決算分析のチェックリスト</h3>
+  <h4>① P/Lチェック</h4>
+  <ul>
+    <li>基礎利益のYoY変化と三利源の内訳（どの利源が変動したか）</li>
+    <li>キャピタル損益の中身（売却益は一時的？持続的？）</li>
+    <li>責任準備金の繰入額変化（保守的な積立を増やしたか？）</li>
+  </ul>
+  <h4>② B/Sチェック</h4>
+  <ul>
+    <li>有価証券の含み損益変化（特に国内債券と株式）</li>
+    <li>責任準備金残高の推移（契約の増減を反映）</li>
+    <li>ソルベンシー・マージン比率 / ESR</li>
+  </ul>
+  <h4>③ EV分析</h4>
+  <ul>
+    <li>EV変動分析：新契約価値、経済変動、前提変更の寄与</li>
+    <li>新契約価値のマージン推移（改善or悪化）</li>
+    <li>感応度テスト結果の前年比較</li>
+  </ul>
+  <h4>④ 資本政策</h4>
+  <ul>
+    <li>配当予想と実績（配当性向、DPS成長率）</li>
+    <li>自社株買い実績・計画</li>
+    <li>政策保有株の売却ペース</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>❓ IR質問の設計テクニック</h3>
+  <p>プロのアナリストは限られた質問時間で最大の情報を引き出す。</p>
+  <h4>効果的な質問パターン</h4>
+  <ul>
+    <li><strong>「○○の前提を教えてください」型</strong>：「EV計算の解約率前提は前年からどう変えましたか？」→数値を引き出す</li>
+    <li><strong>「なぜ」型</strong>：「なぜ費差益が前年比で悪化したのですか？一時要因ですか構造要因ですか？」→因果関係を深掘り</li>
+    <li><strong>感応度の深掘り</strong>：「ESRの金利感応度について、30bp刻みの内訳を教えていただけますか？非線形性はありますか？」</li>
+    <li><strong>戦略的意図を探る</strong>：「超長期債の購入ペースを加速する計画はありますか？目標デュレーションはどの程度ですか？」</li>
+    <li><strong>ピア比較をぶつける</strong>：「御社のVNBマージンは同業比で低いですが、改善の施策を教えてください」</li>
+  </ul>
+  <div class="highlight"><p>💎 最も価値のある質問は「他のアナリストが聞かないこと」。開示資料を隅々まで読み込み、矛盾点や不明点を特定した上で質問を設計する。</p></div>
+</div>
+
+<div class="card">
+  <h3>📅 決算シーズンのワークフロー</h3>
+  <ol>
+    <li><strong>決算前（1-2週間前）</strong>：予想モデルの最終チェック、質問リスト作成</li>
+    <li><strong>決算当日</strong>：速報確認→予想との差異分析→初期コメント作成</li>
+    <li><strong>翌日〜1週間</strong>：詳細分析、EV開示分析、モデル更新</li>
+    <li><strong>説明会参加</strong>：質疑応答で追加情報取得</li>
+    <li><strong>レポート発行</strong>：投資判断の更新、目標株価改定</li>
+  </ol>
+</div>
+
+<div class="quiz">
+  <h4>🧪 確認クイズ</h4>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:10px">生保の決算分析において、EV開示で最も注目すべき項目は？</p>
+  <button class="quiz-option" data-correct="false">保険料等収入の成長率</button>
+  <button class="quiz-option" data-correct="false">経常利益の絶対額</button>
+  <button class="quiz-option" data-correct="true">EV変動分析と新契約価値のマージン推移</button>
+  <button class="quiz-option" data-correct="false">配当金の増減</button>
+  <div class="quiz-feedback">✅ EV変動分析は「EVがなぜ増減したのか」を要因分解して示す。新契約価値のマージン推移は事業の収益性の質を示す。この2つがEV分析の核心。</div>
+</div>
+
+<div class="nav-bottom">
+  <a class="nav-btn prev" href="a4-peer-comparison.html">← 前へ</a>
+  <a class="nav-btn next" href="../index.html">次へ: ホーム →</a>
+</div>
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance</div>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.quiz-option');const fb=q.querySelector('.quiz-feedback');opts.forEach(o=>{o.addEventListener('click',()=>{if(q.dataset.answered)return;q.dataset.answered='true';opts.forEach(x=>x.style.pointerEvents='none');if(o.dataset.correct==='true'){o.classList.add('correct')}else{o.classList.add('wrong');opts.forEach(x=>{if(x.dataset.correct==='true')x.classList.add('correct')})}if(fb)fb.style.display='block'})})});
+</script>
+</body>
+</html>

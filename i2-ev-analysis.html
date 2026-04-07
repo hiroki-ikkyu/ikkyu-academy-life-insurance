@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>EV / MCEV分析入門 — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.level-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:700;color:#fff;margin-bottom:10px}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px;line-height:1.3}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)}
+.card p{font-size:12.5px;color:var(--sub);line-height:1.75}
+.card ul,.card ol{padding-left:18px;margin:8px 0}
+.card li{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:4px}
+.card li strong{color:var(--text)}
+.formula{background:#f0f0f2;border-radius:10px;padding:14px;margin:12px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;line-height:1.6}
+.highlight{border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.highlight p{color:var(--text)!important;font-weight:500;font-size:12.5px;line-height:1.75}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700}
+.stat-label{font-size:10px;color:var(--sub);margin-top:2px}
+.table-wrap{overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:300px}
+th{background:var(--accent);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f2}
+tr:nth-child(even) td{background:#fafafa}
+.quiz{background:var(--card);border:2px solid #e5e5e7;border-radius:var(--radius);padding:18px;margin:14px 0}
+.quiz h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-option{display:block;width:100%;padding:10px 14px;margin:6px 0;background:var(--bg);border:1.5px solid transparent;border-radius:10px;font-size:12px;font-family:inherit;cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-option:hover{border-color:#ccc}
+.quiz-option.correct{background:#34c75920;border-color:#34c759}
+.quiz-option.wrong{background:#ff453a15;border-color:#ff453a}
+.quiz-feedback{font-size:12px;color:var(--sub);margin-top:8px;display:none;line-height:1.6}
+.nav-bottom{display:flex;gap:10px;margin-top:30px}
+.nav-btn{flex:1;padding:14px;border-radius:12px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s}
+.nav-btn.prev{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.nav-btn.next{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.quiz{animation:fadeUp 0.4s ease both}
+
+.level-badge{background:#ff9f0a}
+.stat-val{color:#ff9f0a}
+.highlight{background:#ff9f0a12;border-left:3px solid #ff9f0a}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="level-badge">中級編 #2</div>
+<div class="page-title">EV / MCEV分析入門</div>
+<div class="page-sub">エンベディッドバリューの構造・計算ロジック・感応度分析を実務レベルで理解する</div>
+
+<div class="card">
+  <h3>💎 EVとは何か（改めて深く）</h3>
+  <p>Embedded Value（EV）は、保険会社の「経済的な企業価値」を表す指標。通常のPBRやPERでは保険契約の真の価値が見えないため、保険業界独自の指標として発展した。</p>
+  <div class="formula">EV = 修正純資産(ANW) + 保有契約価値(VIF)</div>
+  <h4>修正純資産(Adjusted Net Worth)</h4>
+  <ul>
+    <li>帳簿上の純資産からスタート</li>
+    <li>有価証券の含み損益（税後）を加算</li>
+    <li>不動産の含み損益（税後）を加算</li>
+    <li>退職給付に係る未認識債務を控除</li>
+    <li>各種準備金（危険準備金・価格変動準備金）を加算</li>
+  </ul>
+  <h4>保有契約価値(Value of In-Force / VIF)</h4>
+  <ul>
+    <li>既存の保険契約から将来得られる利益の現在価値</li>
+    <li>将来の保険料収入−保険金支払−事業費−税金のネットCFをリスク割引率で現在価値化</li>
+    <li>前提条件（金利、死亡率、解約率、事業費率）で大きく変動</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>📊 EEV vs MCEV vs TEV</h3>
+  <div class="table-wrap"><table>
+    <tr><th>手法</th><th>特徴</th><th>採用例</th></tr>
+    <tr><td>TEV（伝統的EV）</td><td>割引率は一律の期待収益率。前提が主観的</td><td>かつての日本生保</td></tr>
+    <tr><td>EEV（欧州EV）</td><td>CFG原則に基づく。トップダウン方式で割引率設定</td><td>第一生命等</td></tr>
+    <tr><td>MCEV（市場整合EV）</td><td>市場で観察可能なデータで評価。フリクショナルコスト等を含む</td><td>欧州大手、一部日系</td></tr>
+  </table></div>
+  <div class="highlight"><p>💎 MCEVはCost of Residual Non-Hedgeable Risk (CRNHR)を差し引く。これは市場でヘッジできないリスク（死亡率変動等）のコスト。EVからMCEVへ移行するとVIFが5-15%減少することが多い。</p></div>
+</div>
+
+<div class="card">
+  <h3>📈 EV変動分析（Movement Analysis）</h3>
+  <p>期首EVから期末EVへの変動要因を分析することで、収益性の質を評価できる。</p>
+  <div class="formula">期末EV = 期首EV + 期待利益 + 新契約価値 + 前提条件変更の影響 + 経済変動の影響 − 配当等</div>
+  <ul>
+    <li><strong>期待利益（Expected Existing Business Contribution）</strong>：リスクフリーレートでのEVの自然成長</li>
+    <li><strong>新契約価値</strong>：当期に獲得した新契約のVIF寄与</li>
+    <li><strong>前提条件変更</strong>：死亡率・解約率・事業費率の前提見直し影響</li>
+    <li><strong>経済変動</strong>：金利・為替・株価の変動によるEV増減</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>🎚️ 感応度分析（Sensitivity Analysis）</h3>
+  <p>各社のEV開示には感応度テストが含まれる。これがアナリストの最重要ツール。</p>
+  <div class="table-wrap"><table>
+    <tr><th>シナリオ</th><th>EV影響方向</th><th>見るべきポイント</th></tr>
+    <tr><td>金利+50bp</td><td>通常プラス</td><td>VIFの改善幅。負債デュレーションの長さを反映</td></tr>
+    <tr><td>金利−50bp</td><td>通常マイナス</td><td>逆ざやリスクの大きさが分かる</td></tr>
+    <tr><td>株価−10%</td><td>マイナス</td><td>ANW中の株式エクスポージャー</td></tr>
+    <tr><td>死亡率−5%</td><td>通常プラス</td><td>死差益の感応度</td></tr>
+    <tr><td>解約率+10%</td><td>通常マイナス</td><td>解約時の逸失利益の大きさ</td></tr>
+    <tr><td>事業費率+10%</td><td>マイナス</td><td>コスト効率性の感応度</td></tr>
+  </table></div>
+</div>
+
+<div class="quiz">
+  <h4>🧪 確認クイズ</h4>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:10px">EVの構成要素のうち、「既存保険契約から将来得られる利益の現在価値」を表すのは？</p>
+  <button class="quiz-option" data-correct="false">修正純資産(ANW)</button>
+  <button class="quiz-option" data-correct="true">保有契約価値(VIF)</button>
+  <button class="quiz-option" data-correct="false">新契約価値(VNB)</button>
+  <button class="quiz-option" data-correct="false">CRNHR</button>
+  <div class="quiz-feedback">✅ VIF（Value of In-Force）は既存の保有契約が将来生み出す利益の現在価値。新契約価値(VNB)は当期新規獲得分のみ。ANWはバランスシート上の修正純資産。</div>
+</div>
+
+<div class="nav-bottom">
+  <a class="nav-btn prev" href="i1-general-account.html">← 前へ</a>
+  <a class="nav-btn next" href="i3-esr-solvency.html">次へ: ESR規制 →</a>
+</div>
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance</div>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.quiz-option');const fb=q.querySelector('.quiz-feedback');opts.forEach(o=>{o.addEventListener('click',()=>{if(q.dataset.answered)return;q.dataset.answered='true';opts.forEach(x=>x.style.pointerEvents='none');if(o.dataset.correct==='true'){o.classList.add('correct')}else{o.classList.add('wrong');opts.forEach(x=>{if(x.dataset.correct==='true')x.classList.add('correct')})}if(fb)fb.style.display='block'})})});
+</script>
+</body>
+</html>

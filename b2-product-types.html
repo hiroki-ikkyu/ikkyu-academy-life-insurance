@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>商品体系を理解する — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.level-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:700;color:#fff;margin-bottom:10px}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px;line-height:1.3}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)}
+.card p{font-size:12.5px;color:var(--sub);line-height:1.75}
+.card ul,.card ol{padding-left:18px;margin:8px 0}
+.card li{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:4px}
+.card li strong{color:var(--text)}
+.formula{background:#f0f0f2;border-radius:10px;padding:14px;margin:12px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;line-height:1.6}
+.highlight{border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.highlight p{color:var(--text)!important;font-weight:500;font-size:12.5px;line-height:1.75}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700}
+.stat-label{font-size:10px;color:var(--sub);margin-top:2px}
+.table-wrap{overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:300px}
+th{background:var(--accent);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f2}
+tr:nth-child(even) td{background:#fafafa}
+.quiz{background:var(--card);border:2px solid #e5e5e7;border-radius:var(--radius);padding:18px;margin:14px 0}
+.quiz h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-option{display:block;width:100%;padding:10px 14px;margin:6px 0;background:var(--bg);border:1.5px solid transparent;border-radius:10px;font-size:12px;font-family:inherit;cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-option:hover{border-color:#ccc}
+.quiz-option.correct{background:#34c75920;border-color:#34c759}
+.quiz-option.wrong{background:#ff453a15;border-color:#ff453a}
+.quiz-feedback{font-size:12px;color:var(--sub);margin-top:8px;display:none;line-height:1.6}
+.nav-bottom{display:flex;gap:10px;margin-top:30px}
+.nav-btn{flex:1;padding:14px;border-radius:12px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s}
+.nav-btn.prev{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.nav-btn.next{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.quiz{animation:fadeUp 0.4s ease both}
+
+.level-badge{background:#34c759}
+.stat-val{color:#34c759}
+.highlight{background:#34c75912;border-left:3px solid #34c759}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="level-badge">入門編 #2</div>
+<div class="page-title">商品体系を理解する</div>
+<div class="page-sub">定期・終身・養老・変額・第三分野——保険商品の全体像と各商品の収益特性</div>
+
+<div class="card">
+  <h3>📋 生命保険商品の分類</h3>
+  <p>生命保険は「第一分野」「第二分野（損害保険）」「第三分野」に分類される。生保会社が扱うのは第一分野と第三分野。</p>
+  <h4>第一分野（生命保険固有の領域）</h4>
+  <ul>
+    <li><strong>定期保険</strong> — 一定期間のみ保障。掛け捨て型。保険料が安く、純粋な保障ニーズに対応。貯蓄性なし</li>
+    <li><strong>終身保険</strong> — 一生涯の死亡保障。解約返戻金あり。貯蓄性が高く、相続対策にも使われる</li>
+    <li><strong>養老保険</strong> — 満期時に満期保険金。死亡保障＋貯蓄。予定利率の影響を最も受ける</li>
+    <li><strong>個人年金保険</strong> — 老後の年金を準備。確定年金と変額年金がある</li>
+    <li><strong>変額保険</strong> — 運用実績で保険金が変動。特別勘定で運用。投資リスクは契約者が負担</li>
+  </ul>
+  <h4>第三分野（生損保どちらも扱える）</h4>
+  <ul>
+    <li><strong>医療保険</strong> — 入院・手術に対する給付金</li>
+    <li><strong>がん保険</strong> — がん診断・治療に特化。アフラック等が強い</li>
+    <li><strong>介護保険</strong> — 要介護状態に対する保障</li>
+    <li><strong>就業不能保険</strong> — 働けなくなった時の所得補償</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>💰 アナリスト視点：商品別の収益性</h3>
+  <div class="table-wrap"><table>
+    <tr><th>商品タイプ</th><th>マージン</th><th>デュレーション</th><th>金利感応度</th></tr>
+    <tr><td>定期保険</td><td>中</td><td>短い(10-20年)</td><td>低</td></tr>
+    <tr><td>終身保険</td><td>中〜高</td><td>超長期</td><td>高</td></tr>
+    <tr><td>養老保険</td><td>低</td><td>中期</td><td>極めて高</td></tr>
+    <tr><td>医療・がん</td><td>高</td><td>長期</td><td>低</td></tr>
+    <tr><td>変額保険</td><td>中（手数料型）</td><td>—</td><td>低（投資リスクは顧客）</td></tr>
+  </table></div>
+  <div class="highlight"><p>💎 第三分野（医療・がん保険）は生保各社にとって「利益率改善のカギ」。死差益率が高く、金利リスクが低い。第三分野比率が高い会社ほど安定収益基盤を持つ。</p></div>
+</div>
+
+<div class="card">
+  <h3>📈 商品ミックスの変遷</h3>
+  <p>日本の生保市場では大きな構造変化が進んでいる：</p>
+  <ul>
+    <li><strong>1990年代まで</strong>：定期付終身保険（定期特約付き）が主力。「死亡保障3,000万円」の大型契約が普通</li>
+    <li><strong>2000年代</strong>：第三分野の解禁（2001年）で医療保険が急成長。逆ざや問題で養老保険が縮小</li>
+    <li><strong>2010年代〜</strong>：保障の小型化・医療シフト。外貨建て保険・変額保険が銀行窓販で伸長</li>
+    <li><strong>現在のトレンド</strong>：死亡保障の平均保障額は低下傾向。健康増進型保険（Vitality等）が新潮流</li>
+  </ul>
+</div>
+
+<div class="quiz">
+  <h4>🧪 確認クイズ</h4>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:10px">以下の商品タイプのうち、一般的にマージンが最も高く、金利感応度が最も低いのは？</p>
+  <button class="quiz-option" data-correct="false">終身保険</button>
+  <button class="quiz-option" data-correct="false">養老保険</button>
+  <button class="quiz-option" data-correct="true">医療保険（第三分野）</button>
+  <button class="quiz-option" data-correct="false">個人年金保険</button>
+  <div class="quiz-feedback">✅ 医療保険は保障性が高く（貯蓄性が低い）、死差益率が高い。金利変動による責任準備金への影響も小さいため、安定的な利益源となる。</div>
+</div>
+
+<div class="nav-bottom">
+  <a class="nav-btn prev" href="b1-what-is-life-insurance.html">← 前へ</a>
+  <a class="nav-btn next" href="b3-industry-structure.html">次へ: 業界構造 →</a>
+</div>
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance</div>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.quiz-option');const fb=q.querySelector('.quiz-feedback');opts.forEach(o=>{o.addEventListener('click',()=>{if(q.dataset.answered)return;q.dataset.answered='true';opts.forEach(x=>x.style.pointerEvents='none');if(o.dataset.correct==='true'){o.classList.add('correct')}else{o.classList.add('wrong');opts.forEach(x=>{if(x.dataset.correct==='true')x.classList.add('correct')})}if(fb)fb.style.display='block'})})});
+</script>
+</body>
+</html>

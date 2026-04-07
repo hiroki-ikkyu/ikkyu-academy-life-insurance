@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>バランスシートの読み方 — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.level-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:700;color:#fff;margin-bottom:10px}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px;line-height:1.3}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)}
+.card p{font-size:12.5px;color:var(--sub);line-height:1.75}
+.card ul,.card ol{padding-left:18px;margin:8px 0}
+.card li{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:4px}
+.card li strong{color:var(--text)}
+.formula{background:#f0f0f2;border-radius:10px;padding:14px;margin:12px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;line-height:1.6}
+.highlight{border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.highlight p{color:var(--text)!important;font-weight:500;font-size:12.5px;line-height:1.75}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700}
+.stat-label{font-size:10px;color:var(--sub);margin-top:2px}
+.table-wrap{overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:300px}
+th{background:var(--accent);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f2}
+tr:nth-child(even) td{background:#fafafa}
+.quiz{background:var(--card);border:2px solid #e5e5e7;border-radius:var(--radius);padding:18px;margin:14px 0}
+.quiz h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-option{display:block;width:100%;padding:10px 14px;margin:6px 0;background:var(--bg);border:1.5px solid transparent;border-radius:10px;font-size:12px;font-family:inherit;cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-option:hover{border-color:#ccc}
+.quiz-option.correct{background:#34c75920;border-color:#34c759}
+.quiz-option.wrong{background:#ff453a15;border-color:#ff453a}
+.quiz-feedback{font-size:12px;color:var(--sub);margin-top:8px;display:none;line-height:1.6}
+.nav-bottom{display:flex;gap:10px;margin-top:30px}
+.nav-btn{flex:1;padding:14px;border-radius:12px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s}
+.nav-btn.prev{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.nav-btn.next{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.quiz{animation:fadeUp 0.4s ease both}
+
+.level-badge{background:#34c759}
+.stat-val{color:#34c759}
+.highlight{background:#34c75912;border-left:3px solid #34c759}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="level-badge">入門編 #6</div>
+<div class="page-title">バランスシートの読み方</div>
+<div class="page-sub">責任準備金・一般勘定資産・含み損益——生保B/Sの特殊構造を解読する</div>
+
+<div class="card">
+  <h3>📋 生保B/Sの全体像</h3>
+  <p>生保のバランスシートは一般事業会社とは根本的に異なる。資産の大半は「契約者から預かったお金の運用先」であり、負債の大半は「将来の保険金支払に備えた責任準備金」。</p>
+  <h4>資産サイド</h4>
+  <ul>
+    <li><strong>有価証券</strong>（60-70%）：国債、社債、外国証券、株式</li>
+    <li><strong>貸付金</strong>（10-15%）：企業向け融資、保険約款貸付</li>
+    <li><strong>不動産</strong>（3-5%）：自社ビル、投資用不動産</li>
+    <li><strong>現預金・その他</strong>（残り）</li>
+  </ul>
+  <h4>負債サイド</h4>
+  <ul>
+    <li><strong>責任準備金</strong>（85-90%）：将来の保険金支払いのための積立金。これが最大の負債</li>
+    <li><strong>その他負債</strong>：社債、借入金等</li>
+  </ul>
+  <h4>純資産</h4>
+  <ul>
+    <li><strong>基金（相互会社）/資本金（株式会社）</strong></li>
+    <li><strong>価格変動準備金・危険準備金</strong>：バッファ</li>
+    <li><strong>その他有価証券評価差額金</strong>：含み損益の一部</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>🔑 責任準備金を理解する</h3>
+  <p>責任準備金は生保B/Sの核心。将来の保険金支払いに備えて契約ごとに積み立てる。</p>
+  <ul>
+    <li><strong>保険料積立金</strong>：純保険料の積立分。最も大きい</li>
+    <li><strong>未経過保険料</strong>：当期分の保険料のうち翌期以降に帰属する部分</li>
+    <li><strong>払戻積立金</strong>：解約返戻金に備えた積立</li>
+  </ul>
+  <div class="highlight"><p>💎 責任準備金の計算に使う「予定利率」が鍵。高予定利率契約が多いほど、責任準備金が膨らみ、運用プレッシャーが増す。逆に新契約の予定利率が低ければ、準備金負担は軽い。</p></div>
+</div>
+
+<div class="card">
+  <h3>💎 含み損益の重要性</h3>
+  <p>帳簿上の純資産だけでは生保の実態は見えない。含み損益を含めた「実質純資産」が重要。</p>
+  <div class="formula">修正純資産 = 純資産 + 有価証券含み損益 + 不動産含み損益 + 退職給付の未認識債務 + 各種準備金（危険・価格変動）</div>
+  <ul>
+    <li>日本生保は歴史的に膨大な<strong>株式含み益</strong>を保有（政策保有株式）</li>
+    <li>金利上昇時は<strong>国内債券に含み損</strong>が発生するが、負債側の時価も減少</li>
+    <li>ESR規制では含み損益が自動的にESR計算に反映される</li>
+  </ul>
+</div>
+
+<div class="quiz">
+  <h4>🧪 確認クイズ</h4>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:10px">生保のバランスシートにおいて、負債の大部分を占めるのは？</p>
+  <button class="quiz-option" data-correct="false">社債・借入金</button>
+  <button class="quiz-option" data-correct="false">支払備金</button>
+  <button class="quiz-option" data-correct="true">責任準備金</button>
+  <button class="quiz-option" data-correct="false">価格変動準備金</button>
+  <div class="quiz-feedback">✅ 責任準備金は生保の負債の85-90%を占める。将来の保険金支払いのために契約ごとに積み立てられる。</div>
+</div>
+
+<div class="nav-bottom">
+  <a class="nav-btn prev" href="b5-pnl-structure.html">← 前へ</a>
+  <a class="nav-btn next" href="b7-distribution.html">次へ: 販売チャネル →</a>
+</div>
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance</div>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.quiz-option');const fb=q.querySelector('.quiz-feedback');opts.forEach(o=>{o.addEventListener('click',()=>{if(q.dataset.answered)return;q.dataset.answered='true';opts.forEach(x=>x.style.pointerEvents='none');if(o.dataset.correct==='true'){o.classList.add('correct')}else{o.classList.add('wrong');opts.forEach(x=>{if(x.dataset.correct==='true')x.classList.add('correct')})}if(fb)fb.style.display='block'})})});
+</script>
+</body>
+</html>

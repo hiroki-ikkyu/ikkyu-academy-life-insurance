@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>海外M&A戦略 — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.level-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:700;color:#fff;margin-bottom:10px}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px;line-height:1.3}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)}
+.card p{font-size:12.5px;color:var(--sub);line-height:1.75}
+.card ul,.card ol{padding-left:18px;margin:8px 0}
+.card li{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:4px}
+.card li strong{color:var(--text)}
+.formula{background:#f0f0f2;border-radius:10px;padding:14px;margin:12px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;line-height:1.6}
+.highlight{border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.highlight p{color:var(--text)!important;font-weight:500;font-size:12.5px;line-height:1.75}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700}
+.stat-label{font-size:10px;color:var(--sub);margin-top:2px}
+.table-wrap{overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:300px}
+th{background:var(--accent);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f2}
+tr:nth-child(even) td{background:#fafafa}
+.quiz{background:var(--card);border:2px solid #e5e5e7;border-radius:var(--radius);padding:18px;margin:14px 0}
+.quiz h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-option{display:block;width:100%;padding:10px 14px;margin:6px 0;background:var(--bg);border:1.5px solid transparent;border-radius:10px;font-size:12px;font-family:inherit;cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-option:hover{border-color:#ccc}
+.quiz-option.correct{background:#34c75920;border-color:#34c759}
+.quiz-option.wrong{background:#ff453a15;border-color:#ff453a}
+.quiz-feedback{font-size:12px;color:var(--sub);margin-top:8px;display:none;line-height:1.6}
+.nav-bottom{display:flex;gap:10px;margin-top:30px}
+.nav-btn{flex:1;padding:14px;border-radius:12px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s}
+.nav-btn.prev{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.nav-btn.next{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.quiz{animation:fadeUp 0.4s ease both}
+
+.level-badge{background:#ff9f0a}
+.stat-val{color:#ff9f0a}
+.highlight{background:#ff9f0a12;border-left:3px solid #ff9f0a}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="level-badge">中級編 #6</div>
+<div class="page-title">海外M&A戦略</div>
+<div class="page-sub">日本生保の海外展開——買収ロジック・統合リスク・バリュエーション</div>
+
+<div class="card">
+  <h3>🌏 なぜ海外に出るのか</h3>
+  <p>日本の生保市場は「成熟→縮小」のフェーズ。人口減少、世帯加入率の頭打ち、保障ニーズの変化により、国内だけでは成長が困難。</p>
+  <ul>
+    <li><strong>国内市場の課題</strong>：人口減少（年間-50万人）、死亡保障ニーズの低下、金利リスク集中</li>
+    <li><strong>海外の魅力</strong>：成長市場（米国の年金/退職給付、アジアの保険浸透率向上）、地域分散効果、高金利環境での利差益</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>📊 主要M&A一覧</h3>
+  <div class="table-wrap"><table>
+    <tr><th>年</th><th>買い手</th><th>対象</th><th>買収額</th><th>地域</th></tr>
+    <tr><td>2015</td><td>第一生命</td><td>Protective</td><td>$5.7B</td><td>米国</td></tr>
+    <tr><td>2015</td><td>明治安田</td><td>StanCorp</td><td>$5.0B</td><td>米国</td></tr>
+    <tr><td>2016</td><td>住友生命</td><td>Symetra</td><td>$3.8B</td><td>米国</td></tr>
+    <tr><td>2016</td><td>日本生命</td><td>MassMutual（少数持分）</td><td>—</td><td>米国</td></tr>
+    <tr><td>2011</td><td>第一生命</td><td>TAL</td><td>A$1.1B</td><td>豪州</td></tr>
+    <tr><td>2019</td><td>第一生命</td><td>Partners Group系</td><td>—</td><td>欧州</td></tr>
+  </table></div>
+</div>
+
+<div class="card">
+  <h3>⚠️ M&Aの分析ポイント</h3>
+  <ul>
+    <li><strong>買収価格のバリュエーション</strong>：P/EV倍率で1.0-1.5xが典型。2.0x超は高値掴みリスク</li>
+    <li><strong>のれん・無形資産</strong>：大型買収ではEV超過額がのれんに。減損リスクを評価</li>
+    <li><strong>PMI（統合プロセス）</strong>：経営陣のリテンション、商品・システム統合の進捗</li>
+    <li><strong>為替リスク</strong>：海外子会社のEVは外貨建て。円高で目減り</li>
+    <li><strong>規制リスク</strong>：米国の州規制、アジア各国の外資規制</li>
+    <li><strong>ROE寄与</strong>：海外事業のROEが国内を上回っているか</li>
+  </ul>
+  <div class="highlight"><p>💎 海外事業比率が高い第一生命は、ProtectiveのEV成長と為替影響がグループEVの変動要因の30-40%を占めることも。Sum-of-Parts分析で国内/海外を分離評価するのが基本。</p></div>
+</div>
+
+<div class="quiz">
+  <h4>🧪 確認クイズ</h4>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:10px">日本の大手生保が海外M&Aを積極化した最大の理由は？</p>
+  <button class="quiz-option" data-correct="false">国内の規制が厳しくなったため</button>
+  <button class="quiz-option" data-correct="true">国内市場の人口減少・成熟化による成長限界</button>
+  <button class="quiz-option" data-correct="false">海外の規制が日本より緩いため</button>
+  <button class="quiz-option" data-correct="false">円安を利用するため</button>
+  <div class="quiz-feedback">✅ 日本の人口減少（年間約50万人）と世帯加入率の頭打ちにより、国内市場だけでは持続的成長が困難。米国・アジア等の成長市場への進出が戦略的必然となった。</div>
+</div>
+
+<div class="nav-bottom">
+  <a class="nav-btn prev" href="i5-new-business.html">← 前へ</a>
+  <a class="nav-btn next" href="i7-ifrs17.html">次へ: IFRS17 →</a>
+</div>
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance</div>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.quiz-option');const fb=q.querySelector('.quiz-feedback');opts.forEach(o=>{o.addEventListener('click',()=>{if(q.dataset.answered)return;q.dataset.answered='true';opts.forEach(x=>x.style.pointerEvents='none');if(o.dataset.correct==='true'){o.classList.add('correct')}else{o.classList.add('wrong');opts.forEach(x=>{if(x.dataset.correct==='true')x.classList.add('correct')})}if(fb)fb.style.display='block'})})});
+</script>
+</body>
+</html>

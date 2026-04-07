@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>一般勘定の資産運用 — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.level-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:700;color:#fff;margin-bottom:10px}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px;line-height:1.3}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)}
+.card p{font-size:12.5px;color:var(--sub);line-height:1.75}
+.card ul,.card ol{padding-left:18px;margin:8px 0}
+.card li{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:4px}
+.card li strong{color:var(--text)}
+.formula{background:#f0f0f2;border-radius:10px;padding:14px;margin:12px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;line-height:1.6}
+.highlight{border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.highlight p{color:var(--text)!important;font-weight:500;font-size:12.5px;line-height:1.75}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700}
+.stat-label{font-size:10px;color:var(--sub);margin-top:2px}
+.table-wrap{overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:300px}
+th{background:var(--accent);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f2}
+tr:nth-child(even) td{background:#fafafa}
+.quiz{background:var(--card);border:2px solid #e5e5e7;border-radius:var(--radius);padding:18px;margin:14px 0}
+.quiz h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-option{display:block;width:100%;padding:10px 14px;margin:6px 0;background:var(--bg);border:1.5px solid transparent;border-radius:10px;font-size:12px;font-family:inherit;cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-option:hover{border-color:#ccc}
+.quiz-option.correct{background:#34c75920;border-color:#34c759}
+.quiz-option.wrong{background:#ff453a15;border-color:#ff453a}
+.quiz-feedback{font-size:12px;color:var(--sub);margin-top:8px;display:none;line-height:1.6}
+.nav-bottom{display:flex;gap:10px;margin-top:30px}
+.nav-btn{flex:1;padding:14px;border-radius:12px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s}
+.nav-btn.prev{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.nav-btn.next{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.quiz{animation:fadeUp 0.4s ease both}
+
+.level-badge{background:#ff9f0a}
+.stat-val{color:#ff9f0a}
+.highlight{background:#ff9f0a12;border-left:3px solid #ff9f0a}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="level-badge">中級編 #1</div>
+<div class="page-title">一般勘定の資産運用</div>
+<div class="page-sub">ALMの基礎・超長期債戦略・為替ヘッジ——生保運用の核心に迫る</div>
+
+<div class="card">
+  <h3>📈 一般勘定とは</h3>
+  <p>生保の資産運用は「一般勘定」と「特別勘定」に分かれる。一般勘定が全体の90%以上を占める。</p>
+  <ul>
+    <li><strong>一般勘定</strong>：保険会社がリスクを負い、予定利率を保証して運用。損益は保険会社に帰属</li>
+    <li><strong>特別勘定</strong>：変額保険・変額年金用。運用リスクは契約者が負う。投信に近い</li>
+  </ul>
+  <div class="highlight"><p>💎 一般勘定の運用は「予定利率を確保しながら、リスクを最小化する」ことが至上命題。攻めの運用ではなく、ALM（資産負債管理）に基づく守りの運用が基本。</p></div>
+</div>
+
+<div class="card">
+  <h3>🏗️ ポートフォリオ構成</h3>
+  <div class="table-wrap"><table>
+    <tr><th>資産クラス</th><th>構成比目安</th><th>役割</th></tr>
+    <tr><td>国内債券</td><td>40-50%</td><td>負債デュレーションへのマッチング。超長期国債が主力</td></tr>
+    <tr><td>外国証券</td><td>20-30%</td><td>利回り追求。米国債・IG社債。為替ヘッジが必須</td></tr>
+    <tr><td>国内株式</td><td>5-10%</td><td>政策保有株中心。縮減圧力強い</td></tr>
+    <tr><td>外国株式</td><td>3-5%</td><td>長期成長狙い。オルタナティブ含む</td></tr>
+    <tr><td>貸付金</td><td>8-12%</td><td>企業融資、不動産ローン</td></tr>
+    <tr><td>不動産</td><td>2-4%</td><td>安定インカム。時価は帳簿価格と乖離あり</td></tr>
+  </table></div>
+</div>
+
+<div class="card">
+  <h3>⚖️ ALMの基本</h3>
+  <p>ALM（Asset Liability Management）は生保運用の心臓部。負債（保険契約）のキャッシュフロープロファイルに合わせて資産を配置する。</p>
+  <h4>デュレーション・ギャップ問題</h4>
+  <ul>
+    <li><strong>負債デュレーション</strong>：終身保険等により20-30年と極めて長い</li>
+    <li><strong>資産デュレーション</strong>：40年国債を増やしても10-15年程度</li>
+    <li><strong>ギャップ</strong>：資産デュレーション＜負債デュレーション→金利低下時に負債の時価が資産以上に膨らむリスク</li>
+  </ul>
+  <div class="formula">デュレーション・ギャップ = 負債D − 資産D ≈ 10-15年</div>
+  <p>このギャップを縮小するために超長期国債（30年・40年）の購入を増やしている。ただし完全なマッチングは不可能。</p>
+</div>
+
+<div class="card">
+  <h3>💱 為替ヘッジの実務</h3>
+  <p>外国証券投資には為替リスクが伴う。ヘッジコストが運用判断を左右する。</p>
+  <ul>
+    <li><strong>為替ヘッジ付き外債</strong>：為替フォワードでドル売り円買い。コストは日米金利差（2-4%程度）</li>
+    <li><strong>オープン外債（為替ヘッジなし）</strong>：円安進行時はプラス、円高でマイナス</li>
+    <li><strong>ヘッジ比率の調整</strong>：各社60-80%ヘッジが標準。ヘッジコスト高騰時は比率を下げる</li>
+  </ul>
+  <div class="highlight"><p>💎 日米金利差が拡大すると為替ヘッジコストが上昇し、ヘッジ後利回りが国内債とほぼ同等に。この場合、外債投資のメリットが薄れ、国内超長期債にシフトする動きが出る。</p></div>
+</div>
+
+<div class="quiz">
+  <h4>🧪 確認クイズ</h4>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:10px">生保の一般勘定において、デュレーション・ギャップが存在する主な理由は？</p>
+  <button class="quiz-option" data-correct="false">株式投資の比率が高すぎるため</button>
+  <button class="quiz-option" data-correct="true">負債（保険契約）のデュレーションが資産のデュレーションより長いため</button>
+  <button class="quiz-option" data-correct="false">為替ヘッジコストが高すぎるため</button>
+  <button class="quiz-option" data-correct="false">不動産投資のデュレーションが極端に短いため</button>
+  <div class="quiz-feedback">✅ 終身保険等の超長期負債のデュレーション（20-30年）に対し、市場に十分な超長期債がないため資産デュレーション（10-15年）との間にギャップが生じる。</div>
+</div>
+
+<div class="nav-bottom">
+  <a class="nav-btn prev" href="b8-global-comparison.html">← 前へ</a>
+  <a class="nav-btn next" href="i2-ev-analysis.html">次へ: EV分析 →</a>
+</div>
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance</div>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.quiz-option');const fb=q.querySelector('.quiz-feedback');opts.forEach(o=>{o.addEventListener('click',()=>{if(q.dataset.answered)return;q.dataset.answered='true';opts.forEach(x=>x.style.pointerEvents='none');if(o.dataset.correct==='true'){o.classList.add('correct')}else{o.classList.add('wrong');opts.forEach(x=>{if(x.dataset.correct==='true')x.classList.add('correct')})}if(fb)fb.style.display='block'})})});
+</script>
+</body>
+</html>

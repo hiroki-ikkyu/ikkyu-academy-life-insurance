@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>IFRS17の基礎 — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.level-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:700;color:#fff;margin-bottom:10px}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px;line-height:1.3}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)}
+.card p{font-size:12.5px;color:var(--sub);line-height:1.75}
+.card ul,.card ol{padding-left:18px;margin:8px 0}
+.card li{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:4px}
+.card li strong{color:var(--text)}
+.formula{background:#f0f0f2;border-radius:10px;padding:14px;margin:12px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;line-height:1.6}
+.highlight{border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.highlight p{color:var(--text)!important;font-weight:500;font-size:12.5px;line-height:1.75}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700}
+.stat-label{font-size:10px;color:var(--sub);margin-top:2px}
+.table-wrap{overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:300px}
+th{background:var(--accent);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f2}
+tr:nth-child(even) td{background:#fafafa}
+.quiz{background:var(--card);border:2px solid #e5e5e7;border-radius:var(--radius);padding:18px;margin:14px 0}
+.quiz h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-option{display:block;width:100%;padding:10px 14px;margin:6px 0;background:var(--bg);border:1.5px solid transparent;border-radius:10px;font-size:12px;font-family:inherit;cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-option:hover{border-color:#ccc}
+.quiz-option.correct{background:#34c75920;border-color:#34c759}
+.quiz-option.wrong{background:#ff453a15;border-color:#ff453a}
+.quiz-feedback{font-size:12px;color:var(--sub);margin-top:8px;display:none;line-height:1.6}
+.nav-bottom{display:flex;gap:10px;margin-top:30px}
+.nav-btn{flex:1;padding:14px;border-radius:12px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s}
+.nav-btn.prev{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.nav-btn.next{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.quiz{animation:fadeUp 0.4s ease both}
+
+.level-badge{background:#ff9f0a}
+.stat-val{color:#ff9f0a}
+.highlight{background:#ff9f0a12;border-left:3px solid #ff9f0a}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="level-badge">中級編 #7</div>
+<div class="page-title">IFRS17の基礎</div>
+<div class="page-sub">CSM・BBA・PAA——保険契約の新会計基準が生保分析に与えるインパクト</div>
+
+<div class="card">
+  <h3>📋 IFRS17とは</h3>
+  <p>IFRS17（International Financial Reporting Standard 17）は、2023年1月に適用開始された保険契約の新会計基準。従来のIFRS4に代わる。</p>
+  <ul>
+    <li><strong>目的</strong>：保険契約の会計処理を世界統一。比較可能性の向上</li>
+    <li><strong>核心コンセプト</strong>：保険負債を「割引後の将来CF＋リスク調整＋CSM」で測定</li>
+    <li><strong>日本の状況</strong>：日本のGAAPでは未適用。ただし日系大手の海外子会社は適用対象。将来的に日本GAAP改革の議論あり</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>🔑 CSM（Contractual Service Margin）</h3>
+  <p>IFRS17の最重要概念。「保険契約から将来得られる未稼得利益」をバランスシートに計上するもの。</p>
+  <div class="formula">保険契約負債 = 将来CFの現在価値 + リスク調整(RA) + CSM</div>
+  <ul>
+    <li><strong>CSM</strong>は契約締結時に設定し、保険サービスの提供に応じて期間按分で損益に繰り入れ</li>
+    <li>利益の「平準化装置」として機能。契約獲得時に一括利益計上しない</li>
+    <li>CSMの残高は「将来の利益のストック」と読める → EVのVIFに近い概念</li>
+    <li>前提変更（死亡率・解約率等）はCSMを通じて調整→P/Lへの即時インパクトを回避</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>📐 3つの測定モデル</h3>
+  <div class="table-wrap"><table>
+    <tr><th>モデル</th><th>対象</th><th>特徴</th></tr>
+    <tr><td>BBA（一般モデル）</td><td>長期保険全般</td><td>CFの見積り+RA+CSM。最も複雑</td></tr>
+    <tr><td>VFA（変動手数料アプローチ）</td><td>有配当契約</td><td>基礎項目のリターンに連動してCSMを調整</td></tr>
+    <tr><td>PAA（保険料配分アプローチ）</td><td>短期契約（1年以下）</td><td>簡便法。損保に多い</td></tr>
+  </table></div>
+  <div class="highlight"><p>💎 生保アナリストにとって、IFRS17の最大のインパクトは「CSM残高が将来利益のストックを可視化する」こと。EV開示しない会社でもCSMで類似の分析が可能になる。</p></div>
+</div>
+
+<div class="card">
+  <h3>📈 IFRS17 vs EVの対比</h3>
+  <div class="table-wrap"><table>
+    <tr><th>項目</th><th>EV/MCEV</th><th>IFRS17</th></tr>
+    <tr><td>目的</td><td>企業価値評価</td><td>会計・財務報告</td></tr>
+    <tr><td>割引率</td><td>リスクフリー+α</td><td>リスクフリー（BBA）</td></tr>
+    <tr><td>将来利益</td><td>VIF（一括PV）</td><td>CSM（段階的繰入）</td></tr>
+    <tr><td>新契約利益</td><td>VNB（PV一括認識）</td><td>CSM設定→期間按分</td></tr>
+    <tr><td>開示義務</td><td>任意（欧州では慣行）</td><td>IFRS適用企業は義務</td></tr>
+  </table></div>
+</div>
+
+<div class="quiz">
+  <h4>🧪 確認クイズ</h4>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:10px">IFRS17のCSM（契約サービスマージン）は何を表しているか？</p>
+  <button class="quiz-option" data-correct="false">保険会社が今期に稼いだ利益</button>
+  <button class="quiz-option" data-correct="true">保険契約から将来得られる未稼得利益のストック</button>
+  <button class="quiz-option" data-correct="false">保険契約のリスク対価</button>
+  <button class="quiz-option" data-correct="false">再保険からの回収見込額</button>
+  <div class="quiz-feedback">✅ CSMは契約締結時に認識される「未稼得利益」であり、サービス提供期間にわたって段階的にP/Lに繰り入れられる。EVのVIF（保有契約価値）に概念的に近い。</div>
+</div>
+
+<div class="nav-bottom">
+  <a class="nav-btn prev" href="i6-overseas-ma.html">← 前へ</a>
+  <a class="nav-btn next" href="a1-valuation-model.html">次へ: バリュエーション →</a>
+</div>
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance</div>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.quiz-option');const fb=q.querySelector('.quiz-feedback');opts.forEach(o=>{o.addEventListener('click',()=>{if(q.dataset.answered)return;q.dataset.answered='true';opts.forEach(x=>x.style.pointerEvents='none');if(o.dataset.correct==='true'){o.classList.add('correct')}else{o.classList.add('wrong');opts.forEach(x=>{if(x.dataset.correct==='true')x.classList.add('correct')})}if(fb)fb.style.display='block'})})});
+</script>
+</body>
+</html>

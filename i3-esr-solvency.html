@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ESR・ソルベンシー規制 — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.level-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:700;color:#fff;margin-bottom:10px}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px;line-height:1.3}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)}
+.card p{font-size:12.5px;color:var(--sub);line-height:1.75}
+.card ul,.card ol{padding-left:18px;margin:8px 0}
+.card li{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:4px}
+.card li strong{color:var(--text)}
+.formula{background:#f0f0f2;border-radius:10px;padding:14px;margin:12px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;line-height:1.6}
+.highlight{border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.highlight p{color:var(--text)!important;font-weight:500;font-size:12.5px;line-height:1.75}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700}
+.stat-label{font-size:10px;color:var(--sub);margin-top:2px}
+.table-wrap{overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:300px}
+th{background:var(--accent);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f2}
+tr:nth-child(even) td{background:#fafafa}
+.quiz{background:var(--card);border:2px solid #e5e5e7;border-radius:var(--radius);padding:18px;margin:14px 0}
+.quiz h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-option{display:block;width:100%;padding:10px 14px;margin:6px 0;background:var(--bg);border:1.5px solid transparent;border-radius:10px;font-size:12px;font-family:inherit;cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-option:hover{border-color:#ccc}
+.quiz-option.correct{background:#34c75920;border-color:#34c759}
+.quiz-option.wrong{background:#ff453a15;border-color:#ff453a}
+.quiz-feedback{font-size:12px;color:var(--sub);margin-top:8px;display:none;line-height:1.6}
+.nav-bottom{display:flex;gap:10px;margin-top:30px}
+.nav-btn{flex:1;padding:14px;border-radius:12px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s}
+.nav-btn.prev{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.nav-btn.next{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.quiz{animation:fadeUp 0.4s ease both}
+
+.level-badge{background:#ff9f0a}
+.stat-val{color:#ff9f0a}
+.highlight{background:#ff9f0a12;border-left:3px solid #ff9f0a}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="level-badge">中級編 #3</div>
+<div class="page-title">ESR・ソルベンシー規制</div>
+<div class="page-sub">経済価値ベース規制の仕組み・計算ロジック・各社への影響を徹底解説</div>
+
+<div class="card">
+  <h3>🛡️ なぜESR規制が導入されたのか</h3>
+  <p>従来のソルベンシー・マージン比率は簿価ベースのため、市場リスクを十分に反映しなかった。2008年の金融危機を経て、国際的に「経済価値ベース」の規制が主流に。</p>
+  <ul>
+    <li><strong>従来の問題点</strong>：簿価で含み損が見えない、金利リスクの過小評価、国際比較が困難</li>
+    <li><strong>グローバル動向</strong>：欧州Solvency II（2016年〜）、IAIS ICS（国際資本基準）</li>
+    <li><strong>日本のESR</strong>：金融庁が2025年度から段階的に導入。2028年度に本格適用</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>📐 ESRの計算構造</h3>
+  <div class="formula">ESR = 適格資本(Own Funds) ÷ 所要資本(SCR) × 100%</div>
+  <h4>適格資本（Own Funds）</h4>
+  <p>資産と負債をすべて時価（経済価値）で評価した場合の純資産。</p>
+  <ul>
+    <li>資産：有価証券は時価、不動産は鑑定評価額</li>
+    <li>負債（保険負債）：将来CFの現在価値（リスクフリーレートで割引）+リスクマージン</li>
+    <li>適格資本 ≈ 資産の時価 − 負債の時価</li>
+  </ul>
+  <h4>所要資本（SCR: Solvency Capital Requirement）</h4>
+  <p>99.5%VaR（200年に1度の損失）に耐えうる資本量。</p>
+  <ul>
+    <li><strong>保険リスク</strong>：死亡率・罹患率の変動リスク</li>
+    <li><strong>市場リスク</strong>：金利・株式・為替・不動産の変動リスク</li>
+    <li><strong>信用リスク</strong>：債券デフォルト等</li>
+    <li><strong>オペレーショナルリスク</strong>：事務・システム障害等</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>📊 ESRの金利感応度</h3>
+  <p>ESRは金利変動に極めて敏感。これは資産と負債のデュレーション差に起因する。</p>
+  <h4>金利上昇時（+100bp）</h4>
+  <ul>
+    <li>資産（債券）の時価：下落（ΔA = −5〜8%程度）</li>
+    <li>負債（保険負債）の時価：大幅下落（ΔL = −10〜15%程度）</li>
+    <li>ネット：適格資本増加 → ESR改善</li>
+  </ul>
+  <h4>金利低下時（−100bp）</h4>
+  <ul>
+    <li>逆の動き。負債が大きく膨らみ、ESR悪化</li>
+    <li>特に超長期のゼロ金利付近では非線形に悪化（フロア効果）</li>
+  </ul>
+  <div class="highlight"><p>💎 ESR規制の導入は「金利上昇＝生保にポジティブ」の論理的根拠を明確にした。金利1%上昇でESRが20-40pp改善する会社もある。</p></div>
+</div>
+
+<div class="card">
+  <h3>🎯 各社の対応戦略</h3>
+  <ul>
+    <li><strong>超長期債の積み増し</strong>：デュレーション・ギャップ縮小によるESR安定化</li>
+    <li><strong>政策保有株の売却</strong>：株式リスク削減→SCR低下→ESR改善</li>
+    <li><strong>外貨建て商品の推進</strong>：外貨負債を持つことで外貨資産との自然ヘッジ</li>
+    <li><strong>再保険の活用</strong>：保険リスクの移転によるSCR削減</li>
+    <li><strong>資本効率重視の商品設計</strong>：ESR負荷の低い保障性商品にシフト</li>
+  </ul>
+</div>
+
+<div class="quiz">
+  <h4>🧪 確認クイズ</h4>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:10px">ESRの所要資本(SCR)は、何パーセンタイルのVaRで設定されているか？</p>
+  <button class="quiz-option" data-correct="false">95% VaR（20年に1度）</button>
+  <button class="quiz-option" data-correct="false">99% VaR（100年に1度）</button>
+  <button class="quiz-option" data-correct="true">99.5% VaR（200年に1度）</button>
+  <button class="quiz-option" data-correct="false">99.9% VaR（1000年に1度）</button>
+  <div class="quiz-feedback">✅ ESRの所要資本は99.5% VaR（200年に1度の損失シナリオ）で設定。欧州Solvency IIと同水準。銀行のバーゼル規制（99.9%）よりは低いが、保険の負債特性を考慮した水準。</div>
+</div>
+
+<div class="nav-bottom">
+  <a class="nav-btn prev" href="i2-ev-analysis.html">← 前へ</a>
+  <a class="nav-btn next" href="i4-interest-rate.html">次へ: 金利感応度 →</a>
+</div>
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance</div>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.quiz-option');const fb=q.querySelector('.quiz-feedback');opts.forEach(o=>{o.addEventListener('click',()=>{if(q.dataset.answered)return;q.dataset.answered='true';opts.forEach(x=>x.style.pointerEvents='none');if(o.dataset.correct==='true'){o.classList.add('correct')}else{o.classList.add('wrong');opts.forEach(x=>{if(x.dataset.correct==='true')x.classList.add('correct')})}if(fb)fb.style.display='block'})})});
+</script>
+</body>
+</html>

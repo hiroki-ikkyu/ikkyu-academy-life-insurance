@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ALM深掘り — Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--sub:#86868b;--accent:#2c2c2e;--blue:#0071e3;--green:#34c759;--orange:#ff9f0a;--red:#ff453a;--purple:#bf5af2;--teal:#5ac8fa;--radius:16px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+body{font-family:'DM Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:430px;margin:0 auto;padding:0 20px 60px}
+.back{display:inline-flex;align-items:center;gap:4px;padding:16px 0;font-size:13px;color:var(--blue);text-decoration:none;font-weight:500}
+.level-badge{display:inline-block;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:700;color:#fff;margin-bottom:10px}
+.page-title{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px;line-height:1.3}
+.page-sub{font-size:12px;color:var(--sub);margin-bottom:24px;line-height:1.5}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:var(--accent)}
+.card p{font-size:12.5px;color:var(--sub);line-height:1.75}
+.card ul,.card ol{padding-left:18px;margin:8px 0}
+.card li{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:4px}
+.card li strong{color:var(--text)}
+.formula{background:#f0f0f2;border-radius:10px;padding:14px;margin:12px 0;font-family:'DM Sans',monospace;font-size:13px;font-weight:600;text-align:center;line-height:1.6}
+.highlight{border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0}
+.highlight p{color:var(--text)!important;font-weight:500;font-size:12.5px;line-height:1.75}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.stat-box{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700}
+.stat-label{font-size:10px;color:var(--sub);margin-top:2px}
+.table-wrap{overflow-x:auto;margin:12px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:300px}
+th{background:var(--accent);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #f0f0f2}
+tr:nth-child(even) td{background:#fafafa}
+.quiz{background:var(--card);border:2px solid #e5e5e7;border-radius:var(--radius);padding:18px;margin:14px 0}
+.quiz h4{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-option{display:block;width:100%;padding:10px 14px;margin:6px 0;background:var(--bg);border:1.5px solid transparent;border-radius:10px;font-size:12px;font-family:inherit;cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-option:hover{border-color:#ccc}
+.quiz-option.correct{background:#34c75920;border-color:#34c759}
+.quiz-option.wrong{background:#ff453a15;border-color:#ff453a}
+.quiz-feedback{font-size:12px;color:var(--sub);margin-top:8px;display:none;line-height:1.6}
+.nav-bottom{display:flex;gap:10px;margin-top:30px}
+.nav-btn{flex:1;padding:14px;border-radius:12px;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s}
+.nav-btn.prev{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.nav-btn.next{background:var(--accent);color:#fff}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.quiz{animation:fadeUp 0.4s ease both}
+
+.level-badge{background:#ff453a}
+.stat-val{color:#ff453a}
+.highlight{background:#ff453a12;border-left:3px solid #ff453a}
+</style>
+</head>
+<body>
+<div class="container">
+<a class="back" href="../index.html">‹ ホームに戻る</a>
+<div class="level-badge">上級編 #3</div>
+<div class="page-title">ALM深掘り</div>
+<div class="page-sub">資産・負債ミスマッチ戦略——キャッシュフロー・マッチングとサープラス・マネジメント</div>
+
+<div class="card">
+  <h3>⚖️ ALMの2つのアプローチ</h3>
+  <h4>① キャッシュフロー・マッチング</h4>
+  <p>負債の将来CFプロファイルと資産のCFを年限別にマッチさせる。最も保守的なアプローチ。</p>
+  <ul>
+    <li>年限別に国債を買い付け、負債CFとの差異を最小化</li>
+    <li>利点：金利リスクの最小化。ESR安定</li>
+    <li>欠点：超長期ゾーン（30年超）の国債供給不足でフルマッチ不可</li>
+  </ul>
+  <h4>② サープラス・マネジメント</h4>
+  <p>資産と負債の差額（サープラス）を最大化する運用。一定のリスクを取って超過リターンを追求。</p>
+  <ul>
+    <li>デュレーション・ギャップを許容し、高利回り資産に投資</li>
+    <li>外国債券、社債、オルタナティブ（PE、インフラ）への配分を増やす</li>
+    <li>金利リスクと信用リスクのトレードオフを管理</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>📊 超長期債市場の実務</h3>
+  <p>日本の超長期国債市場は世界有数。生保は最大の買い手。</p>
+  <div class="table-wrap"><table>
+    <tr><th>年限</th><th>発行額（年間）</th><th>利回り目安</th><th>生保の購入動向</th></tr>
+    <tr><td>20年</td><td>~12兆円</td><td>1.5-2.0%</td><td>安定的に購入</td></tr>
+    <tr><td>30年</td><td>~8兆円</td><td>1.8-2.3%</td><td>ALMマッチングの主力</td></tr>
+    <tr><td>40年</td><td>~4兆円</td><td>2.0-2.5%</td><td>デュレーション延長用</td></tr>
+  </table></div>
+  <div class="highlight"><p>💎 生保の超長期国債購入は市場に大きな影響を与える。生保の買い姿勢が変わると超長期ゾーンの利回りが動く。逆に、利回りが上昇すると生保の購入が増え、利回りに下方圧力がかかる。</p></div>
+</div>
+
+<div class="card">
+  <h3>🏗️ オルタナティブ投資の拡大</h3>
+  <p>低金利環境下で利回り追求のためオルタナティブ投資が拡大中。</p>
+  <ul>
+    <li><strong>プライベート・エクイティ（PE）</strong>：長期投資のためALM的に好相性。ただし流動性リスク</li>
+    <li><strong>インフラ投資</strong>：安定的なインカムゲイン。負債CFマッチングに適合</li>
+    <li><strong>不動産ファンド</strong>：インフレヘッジ効果。ただしESR上は不動産リスクとしてSCR賦課</li>
+    <li><strong>プライベート・デット</strong>：社債のイリクイディティ・プレミアムを取る</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>🎚️ ALM委員会の意思決定プロセス</h3>
+  <p>大手生保のALM委員会（またはALM・投資委員会）では以下を定期的に審議：</p>
+  <ol>
+    <li>経済見通し・金利シナリオの確認</li>
+    <li>負債CFの最新プロファイル分析（新契約・解約トレンド反映）</li>
+    <li>デュレーション・ギャップの確認とターゲット設定</li>
+    <li>アセットクラス別の配分計画（SAA: Strategic Asset Allocation）</li>
+    <li>ESR/ソルベンシーへの影響シミュレーション</li>
+    <li>為替ヘッジ戦略の確認</li>
+  </ol>
+</div>
+
+<div class="quiz">
+  <h4>🧪 確認クイズ</h4>
+  <p style="font-size:12px;color:var(--sub);margin-bottom:10px">ALMにおいて「キャッシュフロー・マッチング」を完全に実現することが難しい主な理由は？</p>
+  <button class="quiz-option" data-correct="false">金利が常に変動するため</button>
+  <button class="quiz-option" data-correct="true">超長期（30年超）の国債供給が負債の量に対して不十分なため</button>
+  <button class="quiz-option" data-correct="false">規制当局がマッチングを制限しているため</button>
+  <button class="quiz-option" data-correct="false">死亡率が予測不能なため</button>
+  <div class="quiz-feedback">✅ 終身保険等の負債デュレーションは30年以上に及ぶが、日本国債の最長年限は40年で、発行量も限られる。完全なCFマッチングは構造的に不可能で、ギャップが残る。</div>
+</div>
+
+<div class="nav-bottom">
+  <a class="nav-btn prev" href="a2-investment-thesis.html">← 前へ</a>
+  <a class="nav-btn next" href="a4-peer-comparison.html">次へ: ピアコンパリソン →</a>
+</div>
+<div style="text-align:center;padding:30px 0;font-size:11px;color:var(--sub)">Academy — Life Insurance</div>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.quiz-option');const fb=q.querySelector('.quiz-feedback');opts.forEach(o=>{o.addEventListener('click',()=>{if(q.dataset.answered)return;q.dataset.answered='true';opts.forEach(x=>x.style.pointerEvents='none');if(o.dataset.correct==='true'){o.classList.add('correct')}else{o.classList.add('wrong');opts.forEach(x=>{if(x.dataset.correct==='true')x.classList.add('correct')})}if(fb)fb.style.display='block'})})});
+</script>
+</body>
+</html>
